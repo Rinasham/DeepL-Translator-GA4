@@ -1,0 +1,26 @@
+.intro {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 46px;
+}
+
+.title:hover {
+  color: #5eb5c0;
+}
+
+.explanation {
+  font-family: "Pompiere", cursive;
+  font-size: 18px;
+}
