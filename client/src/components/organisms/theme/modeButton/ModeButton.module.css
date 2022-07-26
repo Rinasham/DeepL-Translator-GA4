@@ -1,0 +1,6 @@
+.modeBtn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-right: 2rem;
+}
