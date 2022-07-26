@@ -4,10 +4,11 @@ import NavBar from "../../organisms/navbar/NavBar";
 import Title from "../../molecules/title/Title";
 import backImage from "../../../images/study.jpg";
 import styles from "./Main.module.css";
-import ModalButton from "../../molecules/title/modalButton/ModalButton";
+import ModalButton from "../../molecules/modalButton/ModalButton";
 import NavModal from "../../organisms/navModal/NavModal";
 import HomeIntro from "../../organisms/Main/HomeIntro";
 import HomeWhoAmI from "../../organisms/Main/HomeWhoAmI";
+import PageTop from "../../molecules/pageTop/PageTop";
 
 export default function Main() {
   return (
@@ -26,6 +27,7 @@ export default function Main() {
         <NavModal />
         <HomeIntro />
         <HomeWhoAmI />
+        <PageTop />
       </Theme>
     </>
   );

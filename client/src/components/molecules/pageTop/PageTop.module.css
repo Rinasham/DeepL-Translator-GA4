@@ -1,0 +1,21 @@
+.pageTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.pageTop:hover {
+  transform: translate(0, -1rem);
+}
+
+.pageTopText {
+  transform: rotate(90deg);
+  font-family: "Glass Antiqua", cursive;
+  padding-left: 1rem;
+}
