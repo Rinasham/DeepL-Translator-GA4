@@ -6,6 +6,50 @@
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
+
+.title {
+  font-family: "Special Elite", cursive;
+  font-size: 35px;
+  position: absolute;
+  top: 45vh;
+  left: 8vw;
+}
+
+.title > span {
+  font-size: 17px;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.3;
+  font-family: "Krona One", sans-serif;
+  font-size: larger;
+}
+
+.menuItems p:hover {
+  cursor: pointer;
+  color: #d1bfb2;
+  transition: 0.5s;
+}
+
+.address {
+  margin-top: 3rem;
+  font-weight: lighter;
+  margin-right: 7rem;
+  line-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Krona One", sans-serif;
+  font-size: smaller;
+}
+
+/* 優先的にレスポンシブ書く */

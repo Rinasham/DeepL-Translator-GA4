@@ -1,6 +1,6 @@
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import CloseFullscreenSharpIcon from "@mui/icons-material/CloseFullscreenSharp";
-import { COLORS } from "../../colors";
+import { COLORS } from "../../constants/colors";
 import styles from "./ModalButton.module.css";
 
 type Props = {
@@ -22,11 +22,16 @@ export default function ModalButton(props: Props) {
     <div className={styles.buttonWrapper}>
       {isModalOn ? (
         <CloseFullscreenSharpIcon
-          style={{ fontSize: "40px" }}
+          className={styles.icon}
+          // style={{ fontSize: "40px" }}
           onClick={modalClose}
         />
       ) : (
-        <OpenInFullIcon style={{ fontSize: "40px" }} onClick={modalOpen} />
+        <OpenInFullIcon
+          className={styles.icon}
+          // style={{ fontSize: "40px" }}
+          onClick={modalOpen}
+        />
       )}
     </div>
   );

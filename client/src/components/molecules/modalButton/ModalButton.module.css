@@ -6,3 +6,13 @@
   left: 3vw;
   cursor: pointer;
 }
+
+.icon {
+  font-size: 40px;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: #d1bfb2;
+  transition: 0.5s;
+}

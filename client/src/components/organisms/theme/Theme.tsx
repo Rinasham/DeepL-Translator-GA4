@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Theme.module.css";
-import { COLORS } from "../../colors";
+import { COLORS } from "../../constants/colors";
 import { ModeButton } from "../modeButton/ModeButton";
 
 interface Props {
