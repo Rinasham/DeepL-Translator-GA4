@@ -1,6 +1,8 @@
 .buttonWrapper {
   display: inline;
   position: fixed;
+  z-index: 100;
   top: 50vh;
   left: 3vw;
+  cursor: pointer;
 }

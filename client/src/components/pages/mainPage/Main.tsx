@@ -1,5 +1,5 @@
 import Theme from "../../organisms/theme/Theme";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import NavBar from "../../organisms/navbar/NavBar";
 import Title from "../../molecules/title/Title";
 import backImage from "../../../images/study.jpg";
@@ -11,23 +11,26 @@ import HomeWhoAmI from "../../organisms/Main/HomeWhoAmI";
 import PageTop from "../../molecules/pageTop/PageTop";
 
 export default function Main() {
+  const [isModalOn, setModalOn] = useState<boolean>(false);
+
   return (
     <>
       <NavBar />
       <Theme>
         <div className={styles.container}>
-          <ModalButton />
-          <Title />
+          <ModalButton isModalOn={isModalOn} setModalOn={setModalOn} />
+          {isModalOn || <Title />}
+
           <div className={styles.topContainer}>
             <div className={styles.back}>
               <img src={backImage} className={styles.backimg} />
             </div>
           </div>
         </div>
-        <NavModal />
+        {isModalOn && <NavModal />}
         <HomeIntro />
         <HomeWhoAmI />
-        <PageTop />
+        {isModalOn || <PageTop />}
       </Theme>
     </>
   );
