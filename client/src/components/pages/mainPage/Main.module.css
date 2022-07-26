@@ -1,0 +1,23 @@
+.container {
+  width: 100vw;
+  min-height: 90vh;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: end;
+  width: 100vw;
+  min-height: 90vh;
+}
+
+.back {
+  min-height: 90vh;
+  display: flex;
+  justify-content: end;
+}
+
+.backimg {
+  width: 90%;
+  max-height: auto;
+  object-fit: cover;
+}
