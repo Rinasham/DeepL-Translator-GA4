@@ -4,12 +4,16 @@ import DoubleArrowSharpIcon from "@mui/icons-material/DoubleArrowSharp";
 
 export default function HomeWhoAmI() {
   return (
-    <div className={styles.intro}>
-      <div className={styles.flex}>
-        <h3>WHO AM I?</h3>
-        <DoubleArrowSharpIcon style={{ fontSize: "40px" }} />
+    <section className={styles.section}>
+      <div className={styles.flexCol}>
+        <div className={styles.flex}>
+          <h3 className={styles.title}>WHO AM I?</h3>
+          <div className={styles.arrowIcon}>
+            <DoubleArrowSharpIcon style={{ fontSize: "40px" }} />
+          </div>
+        </div>
+        <p>DeepL is blah blah blah blah</p>
       </div>
-      <p>DeepL is blah blah blah blah</p>
-    </div>
+    </section>
   );
 }

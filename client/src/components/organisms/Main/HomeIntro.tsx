@@ -4,17 +4,16 @@ import DoubleArrowSharpIcon from "@mui/icons-material/DoubleArrowSharp";
 
 export default function HomeIntro() {
   return (
-    <div className={styles.intro}>
+    <section className={styles.section}>
       <div className={styles.flexCol}>
         <div className={styles.flex}>
-          <h3>What is DEEPL?</h3>
-          <DoubleArrowSharpIcon
-            className={styles.title}
-            style={{ fontSize: "40px" }}
-          />
+          <h3 className={styles.title}>What is DEEPL?</h3>
+          <div className={styles.arrowIcon}>
+            <DoubleArrowSharpIcon style={{ fontSize: "40px" }} />
+          </div>
         </div>
         <p className={styles.explanation}>DeepL is blah blah blah blah</p>
       </div>
-    </div>
+    </section>
   );
 }

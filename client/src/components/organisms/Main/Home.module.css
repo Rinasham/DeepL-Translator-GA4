@@ -1,5 +1,6 @@
-.intro {
+.section {
   display: flex;
+  margin: 2rem 3rem 2rem 6rem;
 }
 
 .flex {
@@ -13,11 +14,22 @@
 }
 
 .title {
-  font-size: 46px;
+  font-size: 40px;
 }
 
 .title:hover {
   color: #5eb5c0;
+  cursor: pointer;
+}
+
+.arrowIcon {
+  margin-left: 1rem;
+  transition: all 0.5s;
+}
+
+/* TODO titleをonClickで動かすように変更 */
+.arrowIcon:hover {
+  transform: translate(1rem, 0);
 }
 
 .explanation {
