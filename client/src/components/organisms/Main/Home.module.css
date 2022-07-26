@@ -1,6 +1,6 @@
 .section {
   display: flex;
-  margin: 2rem 3rem 2rem 6rem;
+  margin: 5rem 3rem 2rem 6rem;
 }
 
 .flex {
@@ -9,6 +9,8 @@
 }
 
 .flexCol {
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -35,4 +37,9 @@
 .explanation {
   font-family: "Pompiere", cursive;
   font-size: 18px;
+}
+
+.profileImg {
+  width: 90%;
+  height: auto;
 }

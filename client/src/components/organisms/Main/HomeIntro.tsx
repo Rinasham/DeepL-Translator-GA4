@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Home.module.css";
 import DoubleArrowSharpIcon from "@mui/icons-material/DoubleArrowSharp";
+import polygon from "../../../images/polygon.png";
 
 export default function HomeIntro() {
   return (
@@ -13,7 +14,11 @@ export default function HomeIntro() {
           </div>
         </div>
         <p className={styles.explanation}>DeepL is blah blah blah blah</p>
+        <div style={{ width: "90%", overflow: "hidden", maxHeight: "80px" }}>
+          <img src={polygon} />
+        </div>
       </div>
+      <div className={styles.flexCol}></div>
     </section>
   );
 }
