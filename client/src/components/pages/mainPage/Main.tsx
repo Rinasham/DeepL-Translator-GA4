@@ -9,6 +9,7 @@ import NavModal from "../../organisms/navModal/NavModal";
 import HomeIntro from "../../organisms/Main/HomeIntro";
 import HomeWhoAmI from "../../organisms/Main/HomeWhoAmI";
 import PageTop from "../../molecules/pageTop/PageTop";
+import Footer from "../../organisms/footer/Footer";
 
 export default function Main() {
   const [isModalOn, setModalOn] = useState<boolean>(false);
@@ -32,6 +33,7 @@ export default function Main() {
         <HomeWhoAmI />
         {isModalOn || <PageTop />}
       </Theme>
+      <Footer />
     </>
   );
 }
