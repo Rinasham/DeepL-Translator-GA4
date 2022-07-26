@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Theme.module.css";
 import { COLORS } from "../../colors";
-import { ModeButton } from "./modeButton/ModeButton";
+import { ModeButton } from "../modeButton/ModeButton";
 
 interface Props {
   children: React.ReactNode;

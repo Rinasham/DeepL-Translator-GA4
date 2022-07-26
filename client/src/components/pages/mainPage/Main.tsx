@@ -1,5 +1,5 @@
 import Theme from "../../organisms/theme/Theme";
-import React, { useMemo, useState } from "react";
+import { useState } from "react";
 import NavBar from "../../organisms/navbar/NavBar";
 import Title from "../../molecules/title/Title";
 import backImage from "../../../images/study.jpg";
