@@ -1,0 +1,25 @@
+.titleWrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.titleArea {
+  position: absolute;
+  top: 45vh;
+  left: 8vw;
+}
+
+.title {
+  font-family: "Special Elite", cursive;
+  font-size: 35px;
+  display: inline-block;
+}
+
+.title > span {
+  font-size: 17px;
+}
+
+.explanation {
+  font-size: 12px;
+  margin: 3px;
+}
