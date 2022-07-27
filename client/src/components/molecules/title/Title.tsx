@@ -6,13 +6,12 @@ export default function Title() {
     <div className={styles.titleWrapper}>
       <div className={styles.titleArea}>
         <h2 className={styles.title}>
-          D E E P L <span>lerning...</span>
+          AGB <span>Learning...</span>
         </h2>
-        <div>
-          <p className={styles.explanation}>explanation</p>
-          <p className={styles.explanation}>explanation</p>
-          <p className={styles.explanation}>explanation</p>
-          <p className={styles.explanation}>explanation</p>
+        <div className={styles.explanationWrapper}>
+          <p className={styles.explanation}>最先端のAIの技術で</p>
+          <p className={styles.explanation}>英語を学ぶ ------</p>
+          <p className={styles.explanation}>世界で活躍する自分への第一歩</p>
         </div>
       </div>
     </div>

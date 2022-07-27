@@ -13,13 +13,21 @@
   font-family: "Special Elite", cursive;
   font-size: 35px;
   display: inline-block;
+  letter-spacing: 0.2rem;
 }
 
 .title > span {
   font-size: 17px;
 }
 
+.explanationWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
 .explanation {
   font-size: 12px;
   margin: 3px;
+  text-align: left;
 }

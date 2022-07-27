@@ -42,7 +42,7 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        style={{ color: COLORS.ASH_BEIGH, backgroundColor: COLORS.DARK_BLUE }}
+        style={{ color: COLORS.ASH_BEIGE, backgroundColor: COLORS.DARK_BLUE }}
       >
         <Container maxWidth="xl">
           <ToolBar disableGutters>
