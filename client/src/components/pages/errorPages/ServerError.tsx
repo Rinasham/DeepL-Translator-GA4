@@ -9,7 +9,7 @@ export const ServerError = memo(() => {
       <h1 className={styles.title}>500</h1>
       <p>Oops! You weren't supposed to see this.</p>
       <p>
-        Return to <Link to="/">Home</Link> and remember: you haven't seen
+        Return to <Link to="home">Home</Link> and remember: you haven't seen
         anything.
       </p>
     </div>

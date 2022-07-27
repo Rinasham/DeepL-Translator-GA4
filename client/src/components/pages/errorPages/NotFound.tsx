@@ -9,7 +9,7 @@ export const NotFound = memo(() => {
       <h1 className={styles.title}>404</h1>
       <p>Oops! You weren't supposed to see this.</p>
       <p>
-        Return to <Link to="/">Home</Link> and remember: YOU DIDN'T SEE
+        Return to <Link to="home">Home</Link> and remember: YOU DIDN'T SEE
         ANYTHING.
       </p>
     </div>

@@ -12,7 +12,7 @@ import { ChevronRight } from "@mui/icons-material";
 import { useHeader } from "../../../hooks/useHeader";
 
 const navigationLinks = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "home" },
   { name: "Learn", href: "start" },
   { name: "Account", href: "account" },
 ];
