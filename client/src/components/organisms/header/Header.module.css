@@ -1,0 +1,43 @@
+.links {
+  margin-right: 20px;
+  color: var(--ASH_BEIGH);
+  text-decoration: none;
+  font-family: "Italiana", serif;
+  letter-spacing: 0.1rem;
+}
+
+.avatarArea {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Italiana", serif;
+  font-size: 24px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding-inline-start: 0px;
+  margin: 1rem;
+}
+
+li {
+  list-style: none;
+  margin: 0.5rem;
+}
+
+li > a {
+  padding-bottom: 0.3em;
+}
+
+li > a:hover {
+  color: var(--DARK_RED);
+  border-bottom: 1px solid var(--DARK_RED);
+  transition: 1s;
+}

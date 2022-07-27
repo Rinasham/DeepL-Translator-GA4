@@ -13,6 +13,6 @@
 
 .icon:hover {
   cursor: pointer;
-  color: #d1bfb2;
+  color: var(--ASH_BEIGH);
   transition: 0.5s;
 }

@@ -1,13 +1,13 @@
 import Theme from "../../organisms/theme/Theme";
 import { useState } from "react";
-import NavBar from "../../organisms/navbar/NavBar";
+import Header from "../../organisms/header/Header";
 import Title from "../../molecules/title/Title";
 import backImage from "../../../images/study.jpg";
 import styles from "./Main.module.css";
 import ModalButton from "../../molecules/modalButton/ModalButton";
 import NavModal from "../../organisms/navModal/NavModal";
-import HomeIntro from "../../organisms/Main/HomeIntro";
-import HomeWhoAmI from "../../organisms/Main/HomeWhoAmI";
+import HomeIntro from "../../organisms/main/HomeIntro";
+import HomeWhoAmI from "../../organisms/main/HomeWhoAmI";
 import PageTop from "../../molecules/pageTop/PageTop";
 import Footer from "../../organisms/footer/Footer";
 
@@ -16,7 +16,7 @@ export default function Main() {
 
   return (
     <>
-      <NavBar />
+      <Header />
       <Theme>
         <div className={styles.container}>
           <ModalButton isModalOn={isModalOn} setModalOn={setModalOn} />
