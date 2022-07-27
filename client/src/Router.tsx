@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Account from "./components/pages/account/Account";
 import { NotFound } from "./components/pages/errorPages/NotFound";
 import GameMain from "./components/pages/game/GameMain";
 import GameStart from "./components/pages/game/GameStart";
@@ -16,6 +17,7 @@ export const Router: () => JSX.Element = () => {
           <Route path={`login`} element={<Login />} />
           <Route path={`start`} element={<GameStart />} />
           <Route path={`game`} element={<GameMain />} />
+          <Route path={`account`} element={<Account />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
