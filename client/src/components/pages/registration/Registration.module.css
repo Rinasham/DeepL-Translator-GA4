@@ -1,0 +1,42 @@
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--OFF_WHITE);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 300px;
+}
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+}
+
+.button {
+  width: 100%;
+  padding: 0.5em !important;
+  background-color: var(--DARK_GREEN) !important;
+  color: var(--ASH_BEIGE) !important;
+}
+
+.button:hover {
+  background-color: var(--DARK_BLUE);
+}
+
+.errorMessage {
+  color: var(--DARK_RED);
+  margin: 2%;
+  font-weight: bold;
+  font-size: large;
+}
+
+.changeMode:hover {
+  color: var(--DARK_BLUE);
+  cursor: pointer;
+}

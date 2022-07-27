@@ -7,11 +7,21 @@ import { userState } from "../store/userState";
 export const useRegister = () => {
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [authMode, setAuthMode] = useState<string>("signup");
+
+  const changeMode = () => {
+    if (authMode === "signup") {
+      setAuthMode("login");
+    } else if (authMode === "login") {
+      setAuthMode("signup");
+    }
+  };
 
   const onChangeUserNameInput = (e: ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -31,24 +41,54 @@ export const useRegister = () => {
       if (isLoading) {
         return;
       }
+      if (userName === "" || password === "" || confirmPassword === "") {
+        setErrorMessage("Fill in all the fields");
+      }
+
       setIsLoading(true);
-      postSignUp({ user_name: userName, password: password })
-        .then((result) => {
-          postLogin({ user_name: userName, password: password })
-            .then((result) => {
-              // atomの更新関数をここで読んで、Recoilでデータを保存
-              setUserInfo(result);
-              console.log(result);
-              localStorage.setItem("token", result.access_token);
-              navigate("/gamestart");
-            })
-            .catch((err) => console.log(err))
-            .finally(() => setIsLoading(false));
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setIsLoading(false));
+      postSignUp({ user_name: userName, password: password });
+      // .then((result) => {
+      //   postLogin({ user_name: userName, password: password })
+      //     .then((result) => {
+      //       // atomの更新関数をここで読んで、Recoilでデータを保存
+      //       setUserInfo(result);
+      //       console.log(result);
+      //       localStorage.setItem("token", result.access_token);
+      //       navigate("/home");
+      //     })
+      //     .catch((err) => console.log(err))
+      //     .finally(() => setIsLoading(false));
+      // })
+      // .catch((err) => console.log(err))
+      // .finally(() => setIsLoading(false));
     } else {
       setErrorMessage("Password does not match");
+    }
+  };
+
+  const onClickLogin = () => {
+    // userNameとpasswordが空だったら発火しない
+    if (userName !== "" && password !== "") {
+      if (isLoading) {
+        return;
+      }
+      setIsLoading(true);
+      postLogin({ user_name: userName, password: password });
+      //     .then((result) => {
+      //       // atomの更新関数でデータを保存
+      //       setUserInfo(result);
+      //       console.log(result);
+      //       localStorage.setItem("token", result.access_token);
+      //       navigate("/home");
+      //     })
+      //     .catch((err) => {
+      //       setErrorMessage(
+      //         "ログインできませんでした。入力内容をお確かめください。"
+      //       );
+      //     })
+      //     .finally(() => setIsLoading(false));
+      // } else {
+      //   setErrorMessage("入力内容をお確かめください。");
     }
   };
 
@@ -70,5 +110,8 @@ export const useRegister = () => {
     postSignUp,
     postLogin,
     onClickSignUp,
+    changeMode,
+    authMode,
+    onClickLogin,
   };
 };

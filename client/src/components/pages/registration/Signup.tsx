@@ -2,38 +2,32 @@ import React from "react";
 import styles from "./Registration.module.css";
 import { Button, Input } from "@mui/material";
 import { useRegister } from "../../../hooks/useRegister";
+import { postLogin } from "../../../api/register";
 
 export const Signup: React.FC = () => {
   const {
-    userInfo,
-    setUserInfo,
-    navigate,
-    userName,
-    setUserName,
     password,
-    setPassword,
     confirmPassword,
-    setConfirmPassword,
     errorMessage,
-    setErrorMessage,
     onChangeUserNameInput,
     onChangePasswordInput,
     onChangeConfirmPasswordInput,
     onClickSignUp,
+    changeMode,
+    authMode,
+    onClickLogin,
   } = useRegister();
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h2>SIGN UP</h2>
-        {/* username欄 */}
+        <h2>{authMode === "signup" ? "SIGN UP" : "LOG IN"}</h2>
         <Input
           className={styles.form}
           type="text"
           placeholder="UserName"
           onChange={onChangeUserNameInput}
         />
-        {/* password欄 */}
         <Input
           className={styles.form}
           type="password"
@@ -41,22 +35,35 @@ export const Signup: React.FC = () => {
           onChange={onChangePasswordInput}
           value={password}
         />
-        {/* 確認用password欄 */}
-        <Input
-          className={styles.form}
-          type="password"
-          placeholder="Confirm Password"
-          onChange={onChangeConfirmPasswordInput}
-          value={confirmPassword}
-        />
-        <Button
-          className={styles.signupbutton}
-          size="small"
-          onClick={onClickSignUp}
-        >
-          Sign up
-        </Button>
+        {authMode === "signup" && (
+          <Input
+            className={styles.form}
+            type="password"
+            placeholder="Confirm Password"
+            onChange={onChangeConfirmPasswordInput}
+            value={confirmPassword}
+          />
+        )}
+
+        {authMode === "signup" ? (
+          <Button
+            className={styles.button}
+            size="small"
+            onClick={onClickSignUp}
+          >
+            SIGN UP
+          </Button>
+        ) : (
+          <Button className={styles.button} size="small" onClick={onClickLogin}>
+            LOG IN
+          </Button>
+        )}
       </div>
+      <p className={styles.changeMode} onClick={changeMode}>
+        {authMode === "signup"
+          ? "Already have an account?"
+          : "or create an account from here"}
+      </p>
       <p className={styles.errorMessage}>{errorMessage}</p>
     </div>
   );
