@@ -6,6 +6,6 @@ export const userState = atom<User>({
   default: {
     id: 0,
     name: "",
-    access_token: "",
+    // access_token: "",
   },
 });

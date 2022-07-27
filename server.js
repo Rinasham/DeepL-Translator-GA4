@@ -11,6 +11,18 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(
+  expressSession({
+    store: new pgSession({
+      pool: db,
+      createTableIfMissing: true,
+    }),
+    secret: process.env.EXPRESS_SESSION_SECRET_KEY,
+    saveUninitialized: false,
+    resave: false,
+  })
+);
+
 app.use((req, res, next) => {
   console.log(`${new Date()} ${req.method} ${req.path}`);
   res.header("Access-Control-Allow-Origin", "*");
@@ -23,16 +35,6 @@ app.use((req, res, next) => {
 app.use(express.static("./client/build"));
 
 console.log(process.env.EXPRESS_SESSION_SECRET_KEY);
-
-app.use(
-  expressSession({
-    store: new pgSession({
-      pool: db,
-      createTableIfMissing: true,
-    }),
-    secret: process.env.EXPRESS_SESSION_SECRET_KEY,
-  })
-);
 
 const usersControls = require("./controllers/users");
 const translateControls = require("./controllers/translate");

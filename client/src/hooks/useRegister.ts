@@ -46,21 +46,34 @@ export const useRegister = () => {
       }
 
       setIsLoading(true);
-      postSignUp({ user_name: userName, password: password });
-      // .then((result) => {
-      //   postLogin({ user_name: userName, password: password })
-      //     .then((result) => {
-      //       // atomの更新関数をここで読んで、Recoilでデータを保存
-      //       setUserInfo(result);
-      //       console.log(result);
-      //       localStorage.setItem("token", result.access_token);
-      //       navigate("/home");
-      //     })
-      //     .catch((err) => console.log(err))
-      //     .finally(() => setIsLoading(false));
-      // })
-      // .catch((err) => console.log(err))
-      // .finally(() => setIsLoading(false));
+      postSignUp({ user_name: userName, password: password })
+        .then((result) => {
+          if (result.status === 400 || result.status === 401) {
+            console.log(result);
+            console.log("400???");
+            setErrorMessage(result.data.message);
+          } else {
+            postLogin({ user_name: userName, password: password })
+              .then((res) => {
+                console.log(res.status + " :login");
+                if (res.status === 400 || res.status === 401) {
+                  setErrorMessage(res.data.message);
+                } else {
+                  console.log("ナビゲーション");
+
+                  // atomの更新関数をここで読んで、Recoilでデータを保存
+                  // setUserInfo(result);
+                  // console.log(result);
+                  // localStorage.setItem("token", result.access_token);
+                  navigate("/home");
+                }
+              })
+              .catch((err) => console.log(err))
+              .finally(() => setIsLoading(false));
+          }
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
     } else {
       setErrorMessage("Password does not match");
     }
@@ -73,22 +86,30 @@ export const useRegister = () => {
         return;
       }
       setIsLoading(true);
-      postLogin({ user_name: userName, password: password });
-      //     .then((result) => {
-      //       // atomの更新関数でデータを保存
-      //       setUserInfo(result);
-      //       console.log(result);
-      //       localStorage.setItem("token", result.access_token);
-      //       navigate("/home");
-      //     })
-      //     .catch((err) => {
-      //       setErrorMessage(
-      //         "ログインできませんでした。入力内容をお確かめください。"
-      //       );
-      //     })
-      //     .finally(() => setIsLoading(false));
-      // } else {
-      //   setErrorMessage("入力内容をお確かめください。");
+      postLogin({ user_name: userName, password: password })
+        .then((res) => {
+          console.log(res.status + " :login");
+          if (res.status === 400 || res.status === 401) {
+            setErrorMessage(res.data.message);
+          } else {
+            console.log("ナビゲーション");
+
+            // atomの更新関数をここで読んで、Recoilでデータを保存
+            // setUserInfo(result);
+            // console.log(result);
+            // localStorage.setItem("token", result.access_token);
+            console.log(res);
+            // navigate("/home");
+          }
+        })
+        .catch((err) => {
+          setErrorMessage(
+            "ログインできませんでした。入力内容をお確かめください。"
+          );
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setErrorMessage("入力内容をお確かめください。");
     }
   };
 
