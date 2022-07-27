@@ -1,9 +1,13 @@
-import React from "react";
+import { RecoilRoot } from "recoil";
 import "./App.css";
 import { Router } from "./Router";
 
 function App() {
-  return <Router />;
+  return (
+    <RecoilRoot>
+      <Router />
+    </RecoilRoot>
+  );
 }
 
 export default App;

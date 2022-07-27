@@ -5,12 +5,10 @@ export const useHeader = () => {
 
   const openBurgerMenu = () => {
     setBurgerMenuOpen(true);
-    console.log("open");
   };
 
   const closeBurgerMenu = () => {
     setBurgerMenuOpen(false);
-    console.log("close");
   };
 
   return {
