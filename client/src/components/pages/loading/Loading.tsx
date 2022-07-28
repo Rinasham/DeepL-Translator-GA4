@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
 import Typewriter from "typewriter-effect";
 import styles from "./Loading.module.css";
 
 export default function Loading() {
+  const navigation = useNavigate();
+
   return (
     <div className={styles.wrapper}>
       <Typewriter
@@ -22,7 +25,7 @@ export default function Loading() {
             .typeString("<span>AGB Learning</span>")
             .pauseFor(2000)
             .callFunction(() => {
-              window.location.href = "/home";
+              navigation("/home", { state: {}, replace: false });
             })
             .start();
         }}

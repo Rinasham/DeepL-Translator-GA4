@@ -21,7 +21,7 @@ export default function TranslatorStart() {
                 onClickLevels("easy");
               }}
             >
-              EASY
+              <button>EASY</button>
             </li>
             <li
               className={styles.li}
@@ -29,7 +29,7 @@ export default function TranslatorStart() {
                 onClickLevels("normal");
               }}
             >
-              NORMAL
+              <button>NORMAL</button>
             </li>
             <li
               className={styles.li}
@@ -37,7 +37,7 @@ export default function TranslatorStart() {
                 onClickLevels("hard");
               }}
             >
-              HARD
+              <button>HARD</button>
             </li>
           </ul>
         </div>
