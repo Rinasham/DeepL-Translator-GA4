@@ -15,11 +15,11 @@ export const Router: () => JSX.Element = () => {
         <Routes>
           <Route path={`/`} element={<Loading />} />
           <Route path={`/home`} element={<Main />} />
-          <Route path={`authentication`} element={<Authentication />} />
+          <Route path={`/authentication`} element={<Authentication />} />
           {/* <Route path={`login`} element={<Login />} /> */}
-          <Route path={`translator`} element={<TranslatorStart />} />
-          <Route path={`translator-main`} element={<TranslatorMain />} />
-          <Route path={`account`} element={<Account />} />
+          <Route path={`/translator`} element={<TranslatorStart />} />
+          <Route path={`/translator-main`} element={<TranslatorMain />} />
+          <Route path={`/account`} element={<Account />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
