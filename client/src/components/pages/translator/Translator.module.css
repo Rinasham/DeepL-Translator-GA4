@@ -1,0 +1,4 @@
+.li:hover {
+  cursor: pointer;
+  color: var(--DARK_RED);
+}

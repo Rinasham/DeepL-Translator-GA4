@@ -4,7 +4,7 @@ import { Button, Input } from "@mui/material";
 import { useRegister } from "../../../hooks/useRegister";
 import { postLogin } from "../../../api/register";
 
-export const Signup: React.FC = () => {
+export const Authentication: React.FC = () => {
   const {
     password,
     confirmPassword,
