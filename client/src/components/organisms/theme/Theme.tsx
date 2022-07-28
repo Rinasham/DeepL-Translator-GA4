@@ -23,6 +23,10 @@ export default function Theme(props: Props) {
       minWidth: "100vw",
       textAlign: "center",
       backgroundColor: COLORS.OFF_WHITE,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     };
   } else {
     style = {
@@ -31,6 +35,10 @@ export default function Theme(props: Props) {
       textAlign: "center",
       color: COLORS.OFF_WHITE,
       backgroundColor: COLORS.ASH_BLACK,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     };
   }
 
