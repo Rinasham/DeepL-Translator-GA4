@@ -18,7 +18,10 @@ export const Router: () => JSX.Element = () => {
           <Route path={`/authentication`} element={<Authentication />} />
           {/* <Route path={`login`} element={<Login />} /> */}
           <Route path={`/translator`} element={<TranslatorStart />} />
-          <Route path={`/translator-main`} element={<TranslatorMain />} />
+          <Route
+            path={`/translator-main/:level`}
+            element={<TranslatorMain />}
+          />
           <Route path={`/account`} element={<Account />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

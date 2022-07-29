@@ -5,8 +5,10 @@ import Theme from "../../organisms/theme/Theme";
 import styles from "./Translator.module.css";
 
 export default function TranslatorStart() {
+  const navigation = useNavigate();
+
   const onClickLevels = (level: string) => {
-    console.log(level);
+    navigation(`/translator-main/${level}`);
   };
   return (
     <>
