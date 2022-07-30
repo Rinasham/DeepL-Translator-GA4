@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { postJapaneseAnswer } from "../api/postQuestion";
+import { postEnglishAnswer, postJapaneseAnswer } from "../api/postQuestion";
+import { Answers } from "../interface/translator";
 
 export const useTranslator = () => {
   const [language, setLanguage] = useState<string>("japanese");
-  const [japAnswer, setJapAnswer] = useState<string>("");
-  const [engAnswer, setEngAnswer] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
-
+  const [answers, setAnswers] = useState<Answers>({
+    ja_answer: "",
+    en_answer: "",
+  });
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const onChangeInputText = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
+  const onChangeInputText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
     setInputText(text);
   };
@@ -23,33 +24,33 @@ export const useTranslator = () => {
     console.log("submit");
     console.log(language);
     if (language === "japanese") {
-      setJapAnswer(inputText);
+      setAnswers({ ...answers, ja_answer: inputText });
     } else {
-      setEngAnswer(inputText);
+      setAnswers({ ...answers, en_answer: inputText });
     }
   };
 
-
   // post answer to server
   const onClickConfirmation = () => {
-    if (language === 'japanese') {
-      postJapaneseAnswer(japAnswer)
-      setLanguage('english')
-      setInputText('')
-      handleClose()
+    if (language === "japanese") {
+      postJapaneseAnswer(answers.ja_answer);
+      setLanguage("english");
+      setInputText("");
+      handleClose();
+    } else if (language === "english") {
+      postEnglishAnswer(answers.en_answer);
     }
-  }
+  };
 
   return {
     onChangeInputText,
     onClickSubmitForm,
     onClickConfirmation,
     language,
-    japAnswer,
-    engAnswer,
     open,
     handleOpen,
     handleClose,
     inputText,
+    answers,
   };
 };

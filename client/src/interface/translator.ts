@@ -5,3 +5,8 @@ export type Question = {
   level: string;
   genre: string;
 };
+
+export type Answers = {
+  ja_answer: string;
+  en_answer: string;
+}

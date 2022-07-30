@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./Form.module.css";
 
 type FormProps = {
@@ -13,7 +13,7 @@ type FormProps = {
 
 
 
-export const Form: React.FC<FormProps> = ({
+export const Form: React.FC<FormProps> = memo(({
   language,
   handleOpen,
   inputText,
@@ -44,4 +44,4 @@ export const Form: React.FC<FormProps> = ({
       </form>
     </>
   );
-};
+});

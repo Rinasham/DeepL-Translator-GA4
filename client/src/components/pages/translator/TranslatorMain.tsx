@@ -16,8 +16,6 @@ export default function TranslatorMain() {
 
   const {
     language,
-    japAnswer,
-    engAnswer,
     open,
     handleOpen,
     handleClose,
@@ -25,6 +23,7 @@ export default function TranslatorMain() {
     onChangeInputText,
     onClickSubmitForm,
     onClickConfirmation,
+    answers,
   } = useTranslator();
 
   //========================================
@@ -41,15 +40,25 @@ export default function TranslatorMain() {
   // }, []);
 
   //=====================================
-
+  console.log(language);
+  console.log("親");
 
   return (
     <Layout>
       <Theme>
         <div className={styles.contentsWrapper}>
-          <TranslateTitle />
+          <TranslateTitle language={language} />
           <Steps language={language} />
           <p>{selectedQuestion.selectedObj.question}</p>
+          <div>
+            {language === "english" && (
+              <>
+                <p>あなたの回答</p>
+                <p>{answers.ja_answer}</p>
+              </>
+            )}
+          </div>
+
           <Form
             inputText={inputText}
             language={"japanese"}
@@ -57,23 +66,15 @@ export default function TranslatorMain() {
             onChangeInputText={onChangeInputText}
             onClickSubmitForm={onClickSubmitForm}
           />
-          {open ? (
-            language === "japanese" ? (
-              <FormModal
-                open={open}
-                handleClose={handleClose}
-                answer={japAnswer}
-                onClickConfirmation={onClickConfirmation}
-              />
-            ) : (
-              <FormModal
-                open={open}
-                handleClose={handleClose}
-                answer={engAnswer}
-                onClickConfirmation={onClickConfirmation}
-              />
-            )
-          ) : null}
+          {open && (
+            <FormModal
+              open={open}
+              handleClose={handleClose}
+              answers={answers}
+              language={language}
+              onClickConfirmation={onClickConfirmation}
+            />
+          )}
         </div>
       </Theme>
     </Layout>

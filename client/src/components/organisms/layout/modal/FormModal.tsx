@@ -1,12 +1,14 @@
 import Modal from "@mui/material/Modal";
 import { Box, Button } from "@mui/material";
 import styles from './Modal.module.css'
+import {Answers} from '../../../../interface/translator'
 
 type FormModalProps = {
   open: boolean;
   handleClose: () => void;
-  answer: string;
   onClickConfirmation: () => void;
+  language: string;
+  answers: Answers;
 };
 
 const style = {
@@ -22,7 +24,7 @@ const style = {
 };
 
 export const FormModal = (props: FormModalProps) => {
-  const { open, handleClose, answer, onClickConfirmation } = props;
+  const { open, handleClose, answers, onClickConfirmation, language } = props;
 
   return (
     <div>
@@ -34,10 +36,11 @@ export const FormModal = (props: FormModalProps) => {
       >
         <Box sx={style} className={styles.modalContainer}>
           <h2 className={styles.modalTitle}>
-            これでいいですか？
+            {language === 'japanese' ? 'これでいいですか？' : 'Are you sure?'}
+            
           </h2>
           <p className={styles.modalDescription} >
-            {answer}
+            {language === 'japanese' ? answers.ja_answer : answers.en_answer}
           </p>
           <Button className={styles.confirmationButton}
           onClick={onClickConfirmation}
