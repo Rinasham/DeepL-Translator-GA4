@@ -1,1 +1,9 @@
-
+.themeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 88vh;
+  min-width: 100vw;
+  text-align: center;
+}

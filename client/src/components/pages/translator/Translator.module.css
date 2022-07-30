@@ -1,13 +1,21 @@
-button:hover {
-  cursor: pointer;
-  color: var(--DARK_RED);
-  border-bottom: 1px solid var(--DARK_RED);
-}
-
 button {
   border: none;
   font-size: 1rem;
   background-color: var(--OFF_WHITE);
   padding: 0.5em 0.5em 0.75em 0.5em;
   padding-bottom: 0.25em;
+}
+
+button:hover {
+  cursor: pointer;
+  color: var(--LIGHT_BLUE);
+  border-bottom: 1px solid var(--LIGHT_BLUE);
+}
+
+.li {
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
 }

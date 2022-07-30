@@ -2,49 +2,40 @@ import React, { useState } from "react";
 import styles from "./Theme.module.css";
 import { COLORS } from "../../constants/colors";
 import { ModeButton } from "../modeButton/ModeButton";
+import { LayoutProps } from "../../../interface/layout";
+import { useRecoilState } from "recoil";
+import { modeState } from "../../../store/modeState";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function Theme(props: Props) {
+export default function Theme(props: LayoutProps) {
   const { children } = props;
 
-  const [mode, setMode] = useState(true);
+  // const [mode, setMode] = useState(true);
+  const [mode, setMode] = useRecoilState(modeState);
 
-  const changeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMode(event.target.checked);
+  // const changeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMode(event.target.checked);
+  // };
+
+  const switchHandler = () => {
+    setMode({ style: !mode.style });
   };
 
   let style = {};
-  if (mode === true) {
+  if (mode.style === true) {
     style = {
-      minHeight: "90vh",
-      minWidth: "100vw",
-      textAlign: "center",
+      color: COLORS.ASH_BLACK,
       backgroundColor: COLORS.OFF_WHITE,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
     };
   } else {
     style = {
-      minHeight: "90vh",
-      minWidth: "100vw",
-      textAlign: "center",
       color: COLORS.OFF_WHITE,
       backgroundColor: COLORS.ASH_BLACK,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
     };
   }
 
   return (
-    <div style={style}>
-      <ModeButton mode={mode} changeMode={changeMode} />
+    <div style={style} className={styles.themeWrapper}>
+      <ModeButton switchHandler={switchHandler} />
       {children}
     </div>
   );
