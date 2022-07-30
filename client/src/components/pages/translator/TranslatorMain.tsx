@@ -8,9 +8,7 @@ import { Form } from "../../organisms/layout/form/Form";
 import styles from "./Translator.module.css";
 
 import { useTranslator } from "../../../hooks/useTranslator";
-import Modal from "@mui/material/Modal";
-import { Box, Button, Typography } from "@mui/material";
-import { FormModal } from "../../organisms/layout/modal/formModal/FormModal";
+import { FormModal } from "../../organisms/layout/modal/FormModal";
 
 export default function TranslatorMain() {
   const { isLoading, setLoading, getQuestion, selectedQuestion } =
@@ -25,7 +23,8 @@ export default function TranslatorMain() {
     handleClose,
     inputText,
     onChangeInputText,
-    onClickSubmitForm
+    onClickSubmitForm,
+    onClickConfirmation,
   } = useTranslator();
 
   //========================================
@@ -49,7 +48,7 @@ export default function TranslatorMain() {
       <Theme>
         <div className={styles.contentsWrapper}>
           <TranslateTitle />
-          <Steps />
+          <Steps language={language} />
           <p>{selectedQuestion.selectedObj.question}</p>
           <Form
             inputText={inputText}
@@ -64,16 +63,17 @@ export default function TranslatorMain() {
                 open={open}
                 handleClose={handleClose}
                 answer={japAnswer}
+                onClickConfirmation={onClickConfirmation}
               />
             ) : (
               <FormModal
                 open={open}
                 handleClose={handleClose}
                 answer={engAnswer}
+                onClickConfirmation={onClickConfirmation}
               />
             )
           ) : null}
-          <p>{inputText}</p>
         </div>
       </Theme>
     </Layout>

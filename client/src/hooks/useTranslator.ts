@@ -7,7 +7,6 @@ export const useTranslator = () => {
   const [engAnswer, setEngAnswer] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
 
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -35,12 +34,16 @@ export const useTranslator = () => {
   const onClickConfirmation = () => {
     if (language === 'japanese') {
       postJapaneseAnswer(japAnswer)
+      setLanguage('english')
+      setInputText('')
+      handleClose()
     }
   }
 
   return {
     onChangeInputText,
     onClickSubmitForm,
+    onClickConfirmation,
     language,
     japAnswer,
     engAnswer,

@@ -1,11 +1,12 @@
 import Modal from "@mui/material/Modal";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import styles from './Modal.module.css'
 
 type FormModalProps = {
   open: boolean;
   handleClose: () => void;
   answer: string;
+  onClickConfirmation: () => void;
 };
 
 const style = {
@@ -21,7 +22,7 @@ const style = {
 };
 
 export const FormModal = (props: FormModalProps) => {
-  const { open, handleClose, answer } = props;
+  const { open, handleClose, answer, onClickConfirmation } = props;
 
   return (
     <div>
@@ -38,7 +39,9 @@ export const FormModal = (props: FormModalProps) => {
           <p className={styles.modalDescription} >
             {answer}
           </p>
-          <Button className={styles.confirmationButton}>OK</Button>
+          <Button className={styles.confirmationButton}
+          onClick={onClickConfirmation}
+          >OK</Button>
         </Box>
       </Modal>
     </div>
