@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "../../organisms/layout/Layout";
 import { useQuestion } from "../../../hooks/useGetQuestion";
 import Theme from "../../organisms/theme/Theme";
@@ -7,16 +7,30 @@ import { Steps } from "../../molecules/translate/Steps";
 import { Form } from "../../organisms/layout/form/Form";
 import styles from "./Translator.module.css";
 
-export default function TranslatorMain() {
-  const {
-    isLoading,
-    setLoading,
-    getQuestion,
-    // intQuestionId,
-    selectedQuestion,
-  } = useQuestion();
+import { useTranslator } from "../../../hooks/useTranslator";
+import Modal from "@mui/material/Modal";
+import { Box, Button, Typography } from "@mui/material";
+import { FormModal } from "../../organisms/layout/modal/formModal/FormModal";
 
-  const fetchQuestion = () => getQuestion();
+export default function TranslatorMain() {
+  const { isLoading, setLoading, getQuestion, selectedQuestion } =
+    useQuestion();
+
+  const {
+    language,
+    japAnswer,
+    engAnswer,
+    open,
+    handleOpen,
+    handleClose,
+    inputText,
+    onChangeInputText,
+    onClickSubmitForm
+  } = useTranslator();
+
+  //========================================
+
+  // const fetchQuestion = () => getQuestion();
 
   // useEffect(() => {
   //   const fetch = async () => {
@@ -27,13 +41,38 @@ export default function TranslatorMain() {
   //   fetch();
   // }, []);
 
+  //=====================================
+
+
   return (
     <Layout>
       <Theme>
         <div className={styles.contentsWrapper}>
           <TranslateTitle />
           <Steps />
-          <Form language={"japanese"} />
+          <Form
+            inputText={inputText}
+            language={"japanese"}
+            handleOpen={handleOpen}
+            onChangeInputText={onChangeInputText}
+            onClickSubmitForm={onClickSubmitForm}
+          />
+          {open ? (
+            language === "japanese" ? (
+              <FormModal
+                open={open}
+                handleClose={handleClose}
+                answer={japAnswer}
+              />
+            ) : (
+              <FormModal
+                open={open}
+                handleClose={handleClose}
+                answer={engAnswer}
+              />
+            )
+          ) : null}
+          <p>bbb {inputText}</p>
         </div>
       </Theme>
     </Layout>
