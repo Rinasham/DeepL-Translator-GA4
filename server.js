@@ -34,8 +34,6 @@ app.use((req, res, next) => {
 });
 app.use(express.static("./client/build"));
 
-console.log(process.env.EXPRESS_SESSION_SECRET_KEY);
-
 const usersControls = require("./controllers/users");
 const translateControls = require("./controllers/translate");
 

@@ -8,7 +8,32 @@ app.use(express.json());
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+// bd.query("SELECT * FROM questions ORDER_BY RANDOM() limit 1").then(
+//   (dbRes) => {}
+// );
+
+router.get("/:level", (req, res) => {
+  console.log(`SELECT * FROM questions WHERE level='${req.params.level}'`);
+  db.query(`SELECT * FROM questions WHERE level='${req.params.level}'`)
+    .then((dbRes) => {
+      res.json(dbRes.rows);
+    })
+    .catch(() => {
+      res.status(500).json({ success: false });
+    });
+});
+
+router.get("/question/:selectedQuestion", (req, res) => {
+  db.query(`SELECT * FROM questions WHERE id=${req.params.selectedQuestion}`)
+    .then((dbRes) => {
+      res.json(dbRes.rows);
+    })
+    .catch(() => {
+      res.status(500).json({ success: false });
+    });
+});
+
+router.post("/", (req, res) => {
   console.log(`${process.env.DEEPL_URL}/${process.env.DEEPL_API_KEY}`);
 
   let text_ja = ""; //TODO ここに出力する日本語を格納する => apiで送信
