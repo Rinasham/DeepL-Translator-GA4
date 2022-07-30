@@ -41,21 +41,12 @@ export const useQuestion = () => {
     });
   };
 
-  // TranslatorMain
-  const getQuestion = async () => {
-    setLoading(true);
-    // const fetchedQuestion = await getOneQuestion(intQuestionId);
-
-    setLoading(false);
-  };
-
   return {
     isLoading,
     setLoading,
     onClickLevels,
     isLevelSelected,
     questions,
-    getQuestion,
     selectedQuestion,
     setSelectedQuestion,
     // intQuestionId,

@@ -12,8 +12,6 @@ export default function TranslatorStart() {
     isLoading,
     isLevelSelected,
     questions,
-    selectedQuestion,
-    setSelectedQuestion,
     onClickToMainPage,
   } = useQuestion();
 

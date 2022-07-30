@@ -40,14 +40,12 @@ router.post("/checkanswer/:language", (req, res) => {
 
   // let text_ja = ""; //TODO ここに出力する日本語を格納する => apiで送信
   // let text_en = "";
-  let text = "";
+
   let target_lang = ""; // 'JP' or 'EN'
 
   // whan the answer sent is JAPANESE
   if (req.params.language === "ja") {
     target_lang = "EN";
-  } else if (req.params.language === "en") {
-    target_lang = "JA";
   }
 
   translate({
