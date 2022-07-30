@@ -9,6 +9,9 @@ button {
 button:hover {
   cursor: pointer;
   color: var(--LIGHT_BLUE);
+}
+
+.chooseButton:hover {
   border-bottom: 1px solid var(--LIGHT_BLUE);
 }
 
@@ -17,5 +20,38 @@ button:hover {
 }
 
 .link {
+  text-decoration: none;
+}
+
+.contentsWrapper {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formTextarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding-left: 1em;
+  padding-right: 1em;
+  flex: 1;
+  background: #eaedf2;
+  font-size: 18px;
+
+  /* -------------- */
+}
+
+textarea:focus {
+  outline: solid 2px var(--ASH_BLACK);
+}
+
+.formButton {
+  margin-top: 2em;
+}
+
+.formButton:hover {
   text-decoration: none;
 }
