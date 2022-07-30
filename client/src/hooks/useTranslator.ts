@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { postEnglishAnswer, postJapaneseAnswer } from "../api/postQuestion";
+import { postJapaneseAnswer } from "../api/postQuestion";
 import { Answers } from "../interface/translator";
+import { useNavigate } from "react-router";
 
 export const useTranslator = () => {
+  const navigation = useNavigate();
   const [language, setLanguage] = useState<string>("japanese");
   const [inputText, setInputText] = useState<string>("");
+  const [AIanswer, setAIanswer] = useState<string>("");
   const [answers, setAnswers] = useState<Answers>({
     ja_answer: "",
     en_answer: "",
@@ -21,11 +24,10 @@ export const useTranslator = () => {
 
   const onClickSubmitForm = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log("submit");
-    console.log(language);
+
     if (language === "japanese") {
       setAnswers({ ...answers, ja_answer: inputText });
-    } else {
+    } else if (language === "english") {
       setAnswers({ ...answers, en_answer: inputText });
     }
   };
@@ -33,12 +35,23 @@ export const useTranslator = () => {
   // post answer to server
   const onClickConfirmation = () => {
     if (language === "japanese") {
-      postJapaneseAnswer(answers.ja_answer);
+      postAnswer();
       setLanguage("english");
       setInputText("");
       handleClose();
     } else if (language === "english") {
-      postEnglishAnswer(answers.en_answer);
+      setLanguage("compare");
+      handleClose();
+    }
+  };
+
+  const postAnswer = async () => {
+    const translated_en_answer = await postJapaneseAnswer(answers.ja_answer);
+
+    if (translated_en_answer) {
+      setAIanswer(translated_en_answer);
+    } else {
+      navigation("/server-error", { replace: false });
     }
   };
 
@@ -52,5 +65,6 @@ export const useTranslator = () => {
     handleClose,
     inputText,
     answers,
+    AIanswer,
   };
 };

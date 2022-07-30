@@ -9,10 +9,10 @@ import styles from "./Translator.module.css";
 
 import { useTranslator } from "../../../hooks/useTranslator";
 import { FormModal } from "../../organisms/layout/modal/FormModal";
+import { Comparison } from "../../molecules/translate/comparison/Comparison";
 
 export default function TranslatorMain() {
-  const { isLoading, setLoading, getQuestion, selectedQuestion } =
-    useQuestion();
+  const { isLoading, setLoading, selectedQuestion } = useQuestion();
 
   const {
     language,
@@ -24,6 +24,7 @@ export default function TranslatorMain() {
     onClickSubmitForm,
     onClickConfirmation,
     answers,
+    AIanswer,
   } = useTranslator();
 
   //========================================
@@ -58,14 +59,17 @@ export default function TranslatorMain() {
               </>
             )}
           </div>
+          {language === "compare" ? (
+            <Comparison AIanswer={AIanswer} answers={answers} />
+          ) : (
+            <Form
+              inputText={inputText}
+              handleOpen={handleOpen}
+              onChangeInputText={onChangeInputText}
+              onClickSubmitForm={onClickSubmitForm}
+            />
+          )}
 
-          <Form
-            inputText={inputText}
-            language={"japanese"}
-            handleOpen={handleOpen}
-            onChangeInputText={onChangeInputText}
-            onClickSubmitForm={onClickSubmitForm}
-          />
           {open && (
             <FormModal
               open={open}

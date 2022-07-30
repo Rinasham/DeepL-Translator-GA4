@@ -9,4 +9,8 @@ export type Question = {
 export type Answers = {
   ja_answer: string;
   en_answer: string;
-}
+};
+
+export type TranslateResponse = {
+  translated_text: string;
+};

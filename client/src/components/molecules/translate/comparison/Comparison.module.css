@@ -1,0 +1,37 @@
+.comparisonWrapper {
+  display: flex;
+  width: 100%;
+  gap: 1em;
+}
+
+.answerBox {
+  display: flex;
+  flex-direction: column;
+  color: var(--OFF_WHITE);
+  width: 50%;
+}
+
+.answerTitle {
+  padding: 0.5em;
+}
+
+.answerTitle.yourAnswer {
+  background-color: var(--DARK_GREEN);
+}
+
+.answerTitle.aiAnswer {
+  background-color: var(--DARK_RED);
+}
+
+.answerContentBox {
+  color: var(--ASH_BLACK);
+  padding: 1em;
+}
+
+.answerContentBox.yourAnswer {
+  background-color: #8acad5;
+}
+
+.answerBox > .answerContentBox.aiAnswer {
+  background-color: #9314248c;
+}
