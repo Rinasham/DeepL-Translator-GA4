@@ -50,6 +50,7 @@ export default function TranslatorMain() {
         <div className={styles.contentsWrapper}>
           <TranslateTitle />
           <Steps />
+          <p>{selectedQuestion.selectedObj.question}</p>
           <Form
             inputText={inputText}
             language={"japanese"}
@@ -72,7 +73,7 @@ export default function TranslatorMain() {
               />
             )
           ) : null}
-          <p>bbb {inputText}</p>
+          <p>{inputText}</p>
         </div>
       </Theme>
     </Layout>

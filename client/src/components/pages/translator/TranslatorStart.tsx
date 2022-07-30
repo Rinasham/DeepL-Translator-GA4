@@ -34,8 +34,6 @@ export default function TranslatorStart() {
                     key={idx}
                     className={`${modeStyle}`}
                     onClick={() => {
-                      console.log(question.id);
-
                       onClickToMainPage(question);
                     }}
                   >

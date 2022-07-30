@@ -1,5 +1,4 @@
 import React from "react";
-// import { useTranslator } from "../../../../hooks/useTranslator";
 import styles from "./Form.module.css";
 
 type FormProps = {
@@ -8,10 +7,11 @@ type FormProps = {
   inputText: string;
   onChangeInputText: (
     e: React.ChangeEvent<HTMLTextAreaElement>,
-    language: string
   ) => void;
   onClickSubmitForm: (e: { preventDefault: () => void }) => void;
 };
+
+
 
 export const Form: React.FC<FormProps> = ({
   language,
@@ -20,7 +20,7 @@ export const Form: React.FC<FormProps> = ({
   onChangeInputText,
   onClickSubmitForm,
 }) => {
-  // const { inputText, onChangeInputText, onClickSubmitForm } = useTranslator();
+
 
   return (
     <>
@@ -29,7 +29,7 @@ export const Form: React.FC<FormProps> = ({
           rows={5}
           value={inputText}
           onChange={(e) => {
-            onChangeInputText(e, language);
+            onChangeInputText(e);
           }}
         />
         <button

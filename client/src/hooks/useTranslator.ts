@@ -1,44 +1,22 @@
 import { useState } from "react";
+import { postJapaneseAnswer } from "../api/postQuestion";
 
 export const useTranslator = () => {
   const [language, setLanguage] = useState<string>("japanese");
   const [japAnswer, setJapAnswer] = useState<string>("");
   const [engAnswer, setEngAnswer] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
-  const [modalState, setModalState] = useState<boolean>(false);
+
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // let japAnswer = "";
-  // let engAnswer = "";
-
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-
   const onChangeInputText = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    language: string
+    e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const text = e.target.value;
     setInputText(text);
-    // if (language === "japanese") {
-    //   // setJapAnswer(text);
-    //   japAnswer = text;
-    // } else {
-    //   // setEngAnswer(text);
-    //   engAnswer = text;
-    // }
   };
 
   const onClickSubmitForm = (e: { preventDefault: () => void }) => {
@@ -51,6 +29,14 @@ export const useTranslator = () => {
       setEngAnswer(inputText);
     }
   };
+
+
+  // post answer to server
+  const onClickConfirmation = () => {
+    if (language === 'japanese') {
+      postJapaneseAnswer(japAnswer)
+    }
+  }
 
   return {
     onChangeInputText,
