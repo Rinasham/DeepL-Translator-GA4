@@ -1,3 +1,7 @@
+.headerWrapper {
+  width: 100%;
+}
+
 .links {
   margin-right: 20px;
   color: var(--ASH_BEIGE);

@@ -1,6 +1,6 @@
 .section {
   display: flex;
-  margin: 5rem 3rem 2rem 6rem;
+  padding: 5em 3em 2em 6em;
 }
 
 .flex {

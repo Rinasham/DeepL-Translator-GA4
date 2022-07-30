@@ -39,7 +39,8 @@ export default function Header() {
   } = useHeader();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    // <div>
+    <Box sx={{ flexGrow: 1 }} className={styles.headerWrapper}>
       <AppBar
         position="static"
         style={{ color: COLORS.ASH_BEIGE, backgroundColor: COLORS.DARK_BLUE }}
@@ -92,5 +93,6 @@ export default function Header() {
         </SwipeableDrawer>
       </AppBar>
     </Box>
+    // </div>
   );
 }

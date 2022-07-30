@@ -3,3 +3,17 @@ body {
   color: #384449;
   font-family: "Khula", sans-serif;
 }
+
+button {
+  border: none;
+}
+
+.dark {
+  background-color: var(--ASH_BLACK);
+  color: var(--OFF_WHITE);
+}
+
+.light {
+  background-color: var(--OFF_WHITE);
+  color: var(--ASH_BLACK);
+}
