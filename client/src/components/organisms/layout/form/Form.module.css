@@ -16,4 +16,22 @@ form {
 .formButton:hover {
   background-color: var(--DARK_RED);
   color: var(--OFF_WHITE);
+  text-decoration: none;
 }
+
+
+textarea {
+  border: 2px solid var(--ASH_BLACK);
+  border-radius: 6px;
+  flex: 1;
+  background: #eaedf2;
+  padding: 1em;
+  font-size: 20px;
+}
+
+textarea:focus {
+  outline: solid 2px var(--DARK_GREEN);
+}
+
+
+

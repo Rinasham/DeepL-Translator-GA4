@@ -1,0 +1,18 @@
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.modalTitle {
+  margin-bottom: 0;
+}
+
+.confirmationButton {
+  color:var(--OFF_WHITE);
+  background-color: var(--DARK_BLUE);
+  margin-top: 2em;
+  width: 40%;
+}

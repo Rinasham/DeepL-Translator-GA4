@@ -1,5 +1,6 @@
 import Modal from "@mui/material/Modal";
 import { Box, Button, Typography } from "@mui/material";
+import styles from './Modal.module.css'
 
 type FormModalProps = {
   open: boolean;
@@ -21,7 +22,6 @@ const style = {
 
 export const FormModal = (props: FormModalProps) => {
   const { open, handleClose, answer } = props;
-  console.log(answer);
 
   return (
     <div>
@@ -31,14 +31,14 @@ export const FormModal = (props: FormModalProps) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={style} className={styles.modalContainer}>
+          <h2 className={styles.modalTitle}>
             これでいいですか？
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </h2>
+          <p className={styles.modalDescription} >
             {answer}
-          </Typography>
-          <Button>OK</Button>
+          </p>
+          <Button className={styles.confirmationButton}>OK</Button>
         </Box>
       </Modal>
     </div>
