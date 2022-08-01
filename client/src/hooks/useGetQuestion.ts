@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router";
-import axios from "axios";
+import { useState } from "react";
+import { useLocation } from "react-router";
 import { useNavigate } from "react-router";
 import { Question } from "../interface/translator";
-import { getAllQuestions, getOneQuestion } from "../api/getQuestion";
-
-const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
+import { getAllQuestions } from "../api/getQuestion";
 
 export const useQuestion = () => {
   const navigation = useNavigate();
@@ -17,7 +14,6 @@ export const useQuestion = () => {
   // const intQuestionId = parseInt(questionId !== undefined ? questionId : "");
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isLevelSelected, setLevelSelected] = useState<boolean>(false);
-  // const [selectedQuestion, setSelectedQuestion] = useState<Question>();
   const [questions, setQuestions] = useState<Question[]>([]);
 
   // TranslatorStart
@@ -25,6 +21,9 @@ export const useQuestion = () => {
     setLoading(true);
     const fetchedQuestions: Question[] = await getAllQuestions(level);
     console.log(fetchedQuestions);
+    if (!fetchedQuestions) {
+      navigation("/authentication/login");
+    }
 
     setQuestions(fetchedQuestions);
     setLevelSelected(true);

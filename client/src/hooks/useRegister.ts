@@ -106,9 +106,6 @@ export const useRegister = () => {
           if (res.status === 400 || res.status === 401) {
             setErrorMessage(res.data.message);
           } else {
-            console.log("ナビゲーション");
-
-            console.log(res);
             if (res.success) {
               setCookie("token", res.token);
               navigate("/home");
