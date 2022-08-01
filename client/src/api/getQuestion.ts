@@ -2,6 +2,8 @@ import axios from "axios";
 import { Question } from "../interface/translator";
 const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
 
+axios.defaults.withCredentials = true;
+
 export const getAllQuestions = (level: string) => {
   return axios
     .get(`${URL}api/translate/${level}`)

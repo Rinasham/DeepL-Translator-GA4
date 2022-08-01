@@ -43,8 +43,6 @@ export default function Header() {
   } = useHeader();
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  console.log(cookies.token);
-  // console.log(window.sessionStorage.getItem("userId"));
   if (cookies.token) {
     navigationLinks = [
       { name: "Home", href: "/home", type: "" },

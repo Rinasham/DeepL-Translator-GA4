@@ -3,6 +3,7 @@ const app = express();
 const db = require("../db/db");
 const axios = require("axios");
 const translate = require("deepl");
+const auth = require("../auth");
 
 app.use(express.json());
 
@@ -12,7 +13,7 @@ const router = express.Router();
 //   (dbRes) => {}
 // );
 
-router.get("/:level", (req, res) => {
+router.get("/:level", auth, (req, res) => {
   console.log(`SELECT * FROM questions WHERE level='${req.params.level}'`);
   db.query(`SELECT * FROM questions WHERE level='${req.params.level}'`)
     .then((dbRes) => {

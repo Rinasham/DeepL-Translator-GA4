@@ -79,11 +79,6 @@ router.post("/login", (req, res) => {
 
       if (username == user.name) {
         if (isValidPassword(password, user.password_hash)) {
-          console.log("true ルート");
-          // req.session.userId = user.id;
-          // req.session.username = username;
-          // req.session.loggedIn = true;
-          // async () => {
           // JWT
           const payload = {
             username: username,
@@ -97,10 +92,8 @@ router.post("/login", (req, res) => {
           console.log("終わり");
           res.status(200).json({
             success: true,
-            //  id: user.id, name: username
             token: token,
           });
-          // };
         } else {
           res.status(400).json({ message: "Login failed" });
         }
