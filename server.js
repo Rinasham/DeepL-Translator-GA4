@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const expressSession = require("express-session");
 const pgSession = require("connect-pg-simple")(expressSession);
+const cors = require("cors");
 
 const port = process.env.PORT || 3001;
 const db = require("./db/db");
@@ -23,13 +24,15 @@ app.use(
   })
 );
 
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
+
 app.use((req, res, next) => {
   console.log(`${new Date()} ${req.method} ${req.path}`);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
   next();
 });
 app.use(express.static("./client/build"));
