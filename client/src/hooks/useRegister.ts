@@ -19,7 +19,6 @@ export const useRegister = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    console.log(params.mode);
     if (params.mode === "login") {
       setAuthMode("login");
     }
@@ -102,7 +101,6 @@ export const useRegister = () => {
       setIsLoading(true);
       postLogin({ user_name: userName, password: password })
         .then((res) => {
-          console.log(res.status + " :login");
           if (res.status === 400 || res.status === 401) {
             setErrorMessage(res.data.message);
           } else {

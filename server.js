@@ -39,13 +39,11 @@ app.use(express.static("./client/build"));
 
 const usersControls = require("./controllers/users");
 const translateControls = require("./controllers/translate");
+const accountControls = require("./controllers/account");
 
 app.use("/api/users", usersControls);
 app.use("/api/translate", translateControls);
-
-app.get("/api/test", (req, res) => {
-  res.send("hello");
-});
+app.use("/api/account", accountControls);
 
 app.listen(port, () => {
   console.log(`server listening on port: ${port}`);
