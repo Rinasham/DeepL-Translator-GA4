@@ -10,6 +10,10 @@
   letter-spacing: 0.1rem;
 }
 
+.links:hover {
+  cursor: pointer;
+}
+
 .avatarArea {
   margin-right: auto;
   display: flex;

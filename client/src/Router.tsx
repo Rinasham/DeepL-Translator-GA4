@@ -8,6 +8,7 @@ import { Authentication } from "./components/pages/registration/Authentication";
 import TranslatorStart from "./components/pages/translator/TranslatorStart";
 import TranslatorMain from "./components/pages/translator/TranslatorMain";
 import { ServerError } from "./components/pages/errorPages/ServerError";
+import { Logout } from "./components/pages/registration/Logout";
 
 export const Router: () => JSX.Element = () => {
   return (
@@ -16,8 +17,8 @@ export const Router: () => JSX.Element = () => {
         <Routes>
           <Route path={`/`} element={<Loading />} />
           <Route path={`/home`} element={<Main />} />
-          <Route path={`/authentication`} element={<Authentication />} />
-          {/* <Route path={`login`} element={<Login />} /> */}
+          <Route path={`/authentication/:mode`} element={<Authentication />} />
+          <Route path={`/logout`} element={<Logout />} />
           <Route path={`/translator`} element={<TranslatorStart />} />
           <Route path={`/translator-main`} element={<TranslatorMain />} />
           <Route path={`/account`} element={<Account />} />

@@ -1,12 +1,14 @@
-import { useState, ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, ChangeEvent, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { postLogin, postSignUp } from "../api/register";
 import { userState } from "../store/userState";
+import { useCookies } from "react-cookie";
 
 export const useRegister = () => {
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const navigate = useNavigate();
+  const params = useParams();
 
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -14,12 +16,22 @@ export const useRegister = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [authMode, setAuthMode] = useState<string>("signup");
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  useEffect(() => {
+    console.log(params.mode);
+    if (params.mode === "login") {
+      setAuthMode("login");
+    }
+  }, []);
 
   const changeMode = () => {
     if (authMode === "signup") {
       setAuthMode("login");
     } else if (authMode === "login") {
       setAuthMode("signup");
+    } else {
+      console.log("ありません");
     }
   };
 
@@ -58,14 +70,16 @@ export const useRegister = () => {
                 console.log(res.status + " :login");
                 if (res.status === 400 || res.status === 401) {
                   setErrorMessage(res.data.message);
-                } else {
+                } else if (res.success) {
                   console.log("ナビゲーション");
+                  console.log(res.data.token);
 
                   // atomの更新関数をここで読んで、Recoilでデータを保存
                   // setUserInfo(result);
                   // console.log(result);
                   // localStorage.setItem("token", result.access_token);
-                  navigate("/home");
+                  // navigate("/home");
+                  setCookie("token", res.data.token);
                 }
               })
               .catch((err) => console.log(err))
@@ -94,12 +108,11 @@ export const useRegister = () => {
           } else {
             console.log("ナビゲーション");
 
-            // atomの更新関数をここで読んで、Recoilでデータを保存
-            // setUserInfo(result);
-            // console.log(result);
-            // localStorage.setItem("token", result.access_token);
             console.log(res);
-            // navigate("/home");
+            if (res.success) {
+              setCookie("token", res.token);
+              navigate("/home");
+            }
           }
         })
         .catch((err) => {

@@ -6,16 +6,19 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { COLORS } from "../../constants/colors";
 import { Avatar, Container, Divider, SwipeableDrawer } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { ChevronRight } from "@mui/icons-material";
 import { useHeader } from "../../../hooks/useHeader";
+import { useCookies } from "react-cookie";
 
-const navigationLinks = [
-  { name: "Home", href: "/home" },
-  { name: "Learn", href: "/translator" },
-  { name: "Account", href: "/account" },
-];
+type NavigationLink = {
+  name: string;
+  href: string;
+  type: string;
+};
+
+let navigationLinks: NavigationLink[] = [];
 
 const avatarStyle = {
   marginRight: "auto",
@@ -30,6 +33,7 @@ const avatarStyle = {
 };
 
 export default function Header() {
+  const navigation = useNavigate();
   const isSM = useMediaQuery({ query: "(max-width: 600px)" });
   const {
     isBurgerMenuOpen,
@@ -37,6 +41,33 @@ export default function Header() {
     openBurgerMenu,
     closeBurgerMenu,
   } = useHeader();
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  console.log(cookies.token);
+  // console.log(window.sessionStorage.getItem("userId"));
+  if (cookies.token) {
+    navigationLinks = [
+      { name: "Home", href: "/home", type: "" },
+      { name: "Learn", href: "/translator", type: "" },
+      { name: "Account", href: "/account", type: "" },
+      { name: "Logout", href: "/logout", type: "" },
+    ];
+  } else {
+    navigationLinks = [
+      { name: "Home", href: "/home", type: "" },
+      { name: "Learn", href: "/translator", type: "" },
+      { name: "Account", href: "/account", type: "" },
+      { name: "Login", href: "/authentication", type: "login" },
+    ];
+  }
+
+  const onClickLink = (href: string, type: string) => {
+    if (type) {
+      navigation(`${href}/${type}`);
+    } else {
+      navigation(`${href}`);
+    }
+  };
 
   return (
     // <div>
@@ -65,9 +96,15 @@ export default function Header() {
 
             {isSM ||
               navigationLinks.map((item, idx) => (
-                <Link key={idx} className={styles.links} to={item.href}>
+                <li
+                  key={idx}
+                  className={styles.links}
+                  onClick={() => {
+                    onClickLink(item.href, item.type);
+                  }}
+                >
                   {item.name}
-                </Link>
+                </li>
               ))}
           </ToolBar>
         </Container>
