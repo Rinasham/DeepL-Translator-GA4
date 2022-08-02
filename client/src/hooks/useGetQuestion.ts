@@ -21,8 +21,6 @@ export const useQuestion = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [finifhedQuestions, setFinishedQuestions] = useState<number[]>([]);
 
-  console.log(userInfo);
-
   // TranslatorStart
   const onClickLevels = async (level: string) => {
     setLoading(true);

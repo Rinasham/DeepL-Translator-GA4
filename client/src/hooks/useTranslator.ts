@@ -1,10 +1,18 @@
 import { useState } from "react";
-import { postJapaneseAnswer } from "../api/postQuestion";
+import { postJapaneseAnswer, postSetQuestionDone } from "../api/postQuestion";
 import { Answers } from "../interface/translator";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router";
+import { Question } from "../interface/translator";
+import { userState } from "../store/userState";
+import { useRecoilValue } from "recoil";
 
 export const useTranslator = () => {
   const navigation = useNavigate();
+  const location = useLocation();
+  const userInfo = useRecoilValue(userState);
+
+  const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState<string>("japanese");
   const [inputText, setInputText] = useState<string>("");
   const [AIanswer, setAIanswer] = useState<string>("");
@@ -12,7 +20,9 @@ export const useTranslator = () => {
     ja_answer: "",
     en_answer: "",
   });
-  const [open, setOpen] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState<{
+    selectedObj: Question;
+  }>(location.state as { selectedObj: Question });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,6 +51,13 @@ export const useTranslator = () => {
       handleClose();
     } else if (language === "english") {
       setLanguage("compare");
+      postSetQuestionDone(
+        userInfo.id,
+        selectedQuestion.selectedObj.id,
+        // answers.ja_answer,
+        // inputText
+        answers
+      );
       handleClose();
     }
   };

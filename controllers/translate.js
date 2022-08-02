@@ -13,7 +13,6 @@ const router = express.Router();
 // );
 
 router.get("/:level", auth, (req, res) => {
-  console.log(`SELECT * FROM questions WHERE level='${req.params.level}'`);
   db.query(`SELECT * FROM questions WHERE level='${req.params.level}'`)
     .then((dbRes) => {
       res.json(dbRes.rows);
@@ -34,10 +33,6 @@ router.get("/question/:selectedQuestion", (req, res) => {
 });
 
 router.post("/checkanswer/:language", (req, res) => {
-  console.log(`${process.env.DEEPL_URL}/${process.env.DEEPL_API_KEY}`);
-  console.log(req.params.language);
-  console.log(req.body);
-
   // let text_ja = ""; //TODO ここに出力する日本語を格納する => apiで送信
   // let text_en = "";
 
@@ -70,6 +65,24 @@ router.get("/done/:userid", auth, (req, res) => {
   )
     .then((dbRes) => {
       res.json(dbRes.rows);
+    })
+    .catch(() => {
+      res.status(500).json({ success: false });
+    });
+});
+
+// insert DONE QUESTION into done_question table when a user finishes a question
+router.post("/done", (req, res) => {
+  const sql = `INSERT INTO done_questions (user_id, question_id, jap_answer, eng_answer, favorite) VALUES ($1, $2, $3, $4 ,false);`;
+
+  db.query(sql, [
+    req.body.userid,
+    req.body.questionid,
+    req.body.answers.ja_answer,
+    req.body.answers.en_answer,
+  ])
+    .then(() => {
+      res.json({ success: true });
     })
     .catch(() => {
       res.status(500).json({ success: false });
