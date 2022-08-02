@@ -55,13 +55,23 @@ router.post("/checkanswer/:language", (req, res) => {
     auth_key: process.env.DEEPL_API_KEY, // ここにDeeplのAPIキーを入力
   })
     .then((result) => {
-      console.log(result.data);
       const translated_text = result.data.translations[0].text; //Deeplで翻訳された文章をtext_en変数に格納
-      console.log(translated_text);
       res.json({ translated_text: translated_text });
     })
     .catch((error) => {
       console.error(error);
+      res.status(500).json({ success: false });
+    });
+});
+
+router.get("/done/:userid", auth, (req, res) => {
+  db.query(
+    `SELECT question_id FROM done_questions WHERE user_id=${req.params.userid}`
+  )
+    .then((dbRes) => {
+      res.json(dbRes.rows);
+    })
+    .catch(() => {
       res.status(500).json({ success: false });
     });
 });

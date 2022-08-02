@@ -1,4 +1,5 @@
 import axios from "axios";
+
 // const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
 const URL: string | undefined = "/";
 
@@ -7,6 +8,17 @@ axios.defaults.withCredentials = true;
 export const getAllQuestions = (level: string) => {
   return axios
     .get(`${URL}api/translate/${level}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getDoneQuestions = (userId: number) => {
+  return axios
+    .get(`${URL}api/translate/done/${userId}`)
     .then((res) => {
       console.log(res.data);
       return res.data;

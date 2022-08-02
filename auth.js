@@ -3,6 +3,7 @@ const config = require("./config");
 
 function auth(req, res, next) {
   try {
+    console.log(req.headers.cookie);
     const token = req.headers.cookie.replace("token=", "");
     const decoded = jwt.verify(token, config.jwt.secret);
     console.log(decoded);

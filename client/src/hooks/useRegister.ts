@@ -106,6 +106,7 @@ export const useRegister = () => {
           } else {
             if (res.success) {
               setCookie("token", res.token);
+              setUserInfo({ id: res.userId, name: res.userName });
               navigate("/home");
             }
           }

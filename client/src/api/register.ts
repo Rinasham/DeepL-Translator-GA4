@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { User, SignupUser } from "../interface/user";
 // const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
 const URL: string | undefined = "/";
@@ -13,6 +13,8 @@ export const postLogin = async (props: SignupUser) => {
 
   try {
     const result = await axios.post<User>(`${URL}api/users/login`, formData);
+    console.log(result.data);
+
     return result.data;
   } catch (err: any) {
     return err.response;

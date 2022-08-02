@@ -88,10 +88,10 @@ router.post("/login", (req, res) => {
             config.jwt.secret,
             config.jwt.options
           );
-          console.log(token);
-          console.log("終わり");
           res.status(200).json({
             success: true,
+            userId: user.id,
+            userName: user.name,
             token: token,
           });
         } else {

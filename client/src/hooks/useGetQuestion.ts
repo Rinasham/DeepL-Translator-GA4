@@ -2,10 +2,14 @@ import { useState } from "react";
 import { useLocation } from "react-router";
 import { useNavigate } from "react-router";
 import { Question } from "../interface/translator";
-import { getAllQuestions } from "../api/getQuestion";
+
+import { getAllQuestions, getDoneQuestions } from "../api/getQuestion";
+import { userState } from "../store/userState";
+import { useRecoilValue } from "recoil";
 
 export const useQuestion = () => {
   const navigation = useNavigate();
+  const userInfo = useRecoilValue(userState);
   // const { question } = useParams<{ questionId: string }>();
   const location = useLocation();
   const [selectedQuestion, setSelectedQuestion] = useState<{
@@ -15,12 +19,26 @@ export const useQuestion = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isLevelSelected, setLevelSelected] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [finifhedQuestions, setFinishedQuestions] = useState<number[]>([]);
+
+  console.log(userInfo);
 
   // TranslatorStart
   const onClickLevels = async (level: string) => {
     setLoading(true);
-    const fetchedQuestions: Question[] = await getAllQuestions(level);
-    console.log(fetchedQuestions);
+    // const fetchedQuestions: Question[] = await getAllQuestions(level);
+    const [fetchedQuestions, doneQuestions] = await Promise.all([
+      getAllQuestions(level),
+      getDoneQuestions(userInfo.id),
+    ]);
+    if (doneQuestions) {
+      const questions = [];
+      for (let question of doneQuestions) {
+        questions.push(question.question_id);
+      }
+      setFinishedQuestions(questions);
+    }
+    console.log(fetchedQuestions, doneQuestions);
     if (!fetchedQuestions) {
       navigation("/authentication/login");
     }
@@ -50,5 +68,6 @@ export const useQuestion = () => {
     setSelectedQuestion,
     // intQuestionId,
     onClickToMainPage,
+    finifhedQuestions,
   };
 };

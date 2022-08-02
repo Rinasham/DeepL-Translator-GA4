@@ -13,6 +13,7 @@ export default function TranslatorStart() {
     isLevelSelected,
     questions,
     onClickToMainPage,
+    finifhedQuestions,
   } = useQuestion();
 
   const mode = useRecoilValue(modeState);
@@ -21,20 +22,44 @@ export default function TranslatorStart() {
   return (
     <Layout>
       <Theme>
-        <div>
+        <div className={styles.questionsListWrapper}>
           {isLoading ? (
             <p>Loading...</p>
           ) : isLevelSelected && questions ? (
-            <ul>
+            <ul style={{ width: "100%" }}>
               {questions.map((question, idx) => {
                 return (
                   <li
                     key={idx}
-                    className={`${modeStyle}`}
+                    className={`${modeStyle} styles.questionLi`}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                     onClick={() => {
                       onClickToMainPage(question);
                     }}
                   >
+                    {finifhedQuestions.includes(question.id) ? (
+                      <svg
+                        className={styles.checkIcon}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      ""
+                    )}
+
                     <Link to="translator-main" className={styles.link}>
                       {question.question}
                     </Link>
