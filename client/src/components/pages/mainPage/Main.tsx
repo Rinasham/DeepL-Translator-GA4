@@ -10,11 +10,14 @@ import HomeWhoAmI from "../../organisms/main/HomeWhoAmI";
 import PageTop from "../../molecules/pageTop/PageTop";
 import { Layout } from "../../organisms/layout/Layout";
 import { useMediaQuery } from "react-responsive";
+import { useRecoilState } from "recoil";
+import { modeState } from "../../../store/modeState";
 
 export default function Main() {
   const [isModalOn, setModalOn] = useState<boolean>(false);
   const isSM = useMediaQuery({ query: "(max-width: 600px)" });
   const isMobile = isSM ? "mobile" : "desktop";
+  const [mode, setMode] = useRecoilState(modeState);
 
   return (
     <Layout>
@@ -25,7 +28,11 @@ export default function Main() {
 
           <div className={styles.topContainer}>
             <div className={styles.back}>
-              <img src={backImage} className={styles.backimg} />
+              <img
+                src={backImage}
+                className={styles.backimg}
+                style={{ filter: mode.style ? "" : "brightness(0.5)" }}
+              />
             </div>
           </div>
         </div>
