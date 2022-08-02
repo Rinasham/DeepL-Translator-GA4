@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { User, SignupUser } from "../interface/user";
-const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
+// const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
+const URL: string | undefined = "/";
 
 export const postLogin = async (props: SignupUser) => {
   const { user_name, password } = props;

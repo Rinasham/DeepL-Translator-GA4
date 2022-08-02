@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { TranslateResponse } from "../interface/translator";
-const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
+// const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
+const URL: string | undefined = "/";
 
 export const postJapaneseAnswer = (japAnswer: string) => {
   return axios
