@@ -27,6 +27,7 @@
 
 .descriptionContainer.desktop {
   padding: 1rem 2rem;
+  display: flex;
 }
 .descriptionContainer.mobile {
   display: flex;
