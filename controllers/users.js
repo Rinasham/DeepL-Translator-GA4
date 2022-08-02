@@ -88,6 +88,7 @@ router.post("/login", (req, res) => {
             config.jwt.secret,
             config.jwt.options
           );
+
           res.status(200).json({
             success: true,
             userId: user.id,

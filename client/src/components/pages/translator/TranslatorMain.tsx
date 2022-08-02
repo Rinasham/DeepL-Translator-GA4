@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Layout } from "../../organisms/layout/Layout";
 import { useQuestion } from "../../../hooks/useGetQuestion";
 import Theme from "../../organisms/theme/Theme";
@@ -12,7 +11,7 @@ import { FormModal } from "../../organisms/layout/modal/FormModal";
 import { Comparison } from "../../molecules/translate/comparison/Comparison";
 
 export default function TranslatorMain() {
-  const { isLoading, setLoading, selectedQuestion } = useQuestion();
+  const { selectedQuestion } = useQuestion();
 
   const {
     language,
@@ -26,23 +25,6 @@ export default function TranslatorMain() {
     answers,
     AIanswer,
   } = useTranslator();
-
-  //========================================
-
-  // const fetchQuestion = () => getQuestion();
-
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     setLoading(true);
-  //     await fetchQuestion();
-  //     setLoading(false);
-  //   };
-  //   fetch();
-  // }, []);
-
-  //=====================================
-  console.log(language);
-  console.log("親");
 
   return (
     <Layout>

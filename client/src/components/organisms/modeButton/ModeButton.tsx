@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ModeButton.module.css";
 import Switch from "@mui/material/Switch";
 import { useRecoilValue } from "recoil";

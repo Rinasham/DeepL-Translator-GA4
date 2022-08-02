@@ -1,12 +1,9 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import { postLogin, postSignUp } from "../api/register";
-import { userState } from "../store/userState";
 import { useCookies } from "react-cookie";
 
 export const useRegister = () => {
-  const [userInfo, setUserInfo] = useRecoilState(userState);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -60,8 +57,6 @@ export const useRegister = () => {
       postSignUp({ user_name: userName, password: password })
         .then((result) => {
           if (result.status === 400 || result.status === 401) {
-            console.log(result);
-            console.log("400???");
             setErrorMessage(result.data.message);
           } else {
             postLogin({ user_name: userName, password: password })
@@ -71,13 +66,9 @@ export const useRegister = () => {
                   setErrorMessage(res.data.message);
                 } else if (res.success) {
                   console.log("ナビゲーション");
-                  console.log(res.data.token);
+                  console.log(res.data);
 
-                  // atomの更新関数をここで読んで、Recoilでデータを保存
-                  // setUserInfo(result);
-                  // console.log(result);
-                  // localStorage.setItem("token", result.access_token);
-                  // navigate("/home");
+                  setCookie("userid", res.data.userId);
                   setCookie("token", res.data.token);
                 }
               })
@@ -105,8 +96,9 @@ export const useRegister = () => {
             setErrorMessage(res.data.message);
           } else {
             if (res.success) {
+              setCookie("userid", res.userId);
               setCookie("token", res.token);
-              setUserInfo({ id: res.userId, name: res.userName });
+
               navigate("/home");
             }
           }
@@ -123,8 +115,6 @@ export const useRegister = () => {
   };
 
   return {
-    userInfo,
-    setUserInfo,
     navigate,
     userName,
     setUserName,

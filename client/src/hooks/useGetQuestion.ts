@@ -2,20 +2,19 @@ import { useState } from "react";
 import { useLocation } from "react-router";
 import { useNavigate } from "react-router";
 import { Question } from "../interface/translator";
-
+import { useCookies } from "react-cookie";
 import { getAllQuestions, getDoneQuestions } from "../api/getQuestion";
-import { userState } from "../store/userState";
-import { useRecoilValue } from "recoil";
 
 export const useQuestion = () => {
   const navigation = useNavigate();
-  const userInfo = useRecoilValue(userState);
+  const [cookies, setCookie, removeCookie] = useCookies();
   // const { question } = useParams<{ questionId: string }>();
+  // const intQuestionId = parseInt(questionId !== undefined ? questionId : "");
   const location = useLocation();
   const [selectedQuestion, setSelectedQuestion] = useState<{
     selectedObj: Question;
   }>(location.state as { selectedObj: Question });
-  // const intQuestionId = parseInt(questionId !== undefined ? questionId : "");
+
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isLevelSelected, setLevelSelected] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -24,10 +23,12 @@ export const useQuestion = () => {
   // TranslatorStart
   const onClickLevels = async (level: string) => {
     setLoading(true);
-    // const fetchedQuestions: Question[] = await getAllQuestions(level);
+    if (!cookies.userid) {
+      navigation("/authentication/login");
+    }
     const [fetchedQuestions, doneQuestions] = await Promise.all([
       getAllQuestions(level),
-      getDoneQuestions(userInfo.id),
+      getDoneQuestions(cookies.userid),
     ]);
     if (doneQuestions) {
       const questions = [];
@@ -35,10 +36,6 @@ export const useQuestion = () => {
         questions.push(question.question_id);
       }
       setFinishedQuestions(questions);
-    }
-    console.log(fetchedQuestions, doneQuestions);
-    if (!fetchedQuestions) {
-      navigation("/authentication/login");
     }
 
     setQuestions(fetchedQuestions);

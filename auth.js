@@ -3,7 +3,8 @@ const config = require("./config");
 
 function auth(req, res, next) {
   try {
-    const token = req.headers.cookie.replace("token=", "");
+    const cookieSplitArr = req.headers.cookie.split(";");
+    const token = cookieSplitArr[1].replace(" token=", "");
     const decoded = jwt.verify(token, config.jwt.secret);
 
     next();

@@ -3,7 +3,6 @@ import Account from "./components/pages/account/Account";
 import { NotFound } from "./components/pages/errorPages/NotFound";
 import Loading from "./components/pages/loading/Loading";
 import Main from "./components/pages/mainPage/Main";
-import Login from "./components/pages/registration/Login";
 import { Authentication } from "./components/pages/registration/Authentication";
 import TranslatorStart from "./components/pages/translator/TranslatorStart";
 import TranslatorMain from "./components/pages/translator/TranslatorMain";

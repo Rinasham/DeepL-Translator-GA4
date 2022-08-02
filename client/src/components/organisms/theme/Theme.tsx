@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "./Theme.module.css";
 import { COLORS } from "../../constants/colors";
 import { ModeButton } from "../modeButton/ModeButton";
@@ -9,12 +8,7 @@ import { modeState } from "../../../store/modeState";
 export default function Theme(props: LayoutProps) {
   const { children } = props;
 
-  // const [mode, setMode] = useState(true);
   const [mode, setMode] = useRecoilState(modeState);
-
-  // const changeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setMode(event.target.checked);
-  // };
 
   const switchHandler = () => {
     setMode({ style: !mode.style });

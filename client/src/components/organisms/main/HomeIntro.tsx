@@ -15,7 +15,7 @@ export default function HomeIntro() {
         </div>
         <p className={styles.explanation}>DeepL is blah blah blah blah</p>
       </div>
-      <div className={styles.flexCol}>
+      <div className={`${styles.flexCol} ${styles.flexImgBox}`}>
         <img src={deepl} style={{ width: "80%", margin: "auto" }} />
       </div>
     </section>

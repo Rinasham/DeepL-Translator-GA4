@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Registration.module.css";
 import { Button, Input } from "@mui/material";
 import { useRegister } from "../../../hooks/useRegister";
-import { postLogin } from "../../../api/register";
 
 export const Authentication: React.FC = () => {
   const {
