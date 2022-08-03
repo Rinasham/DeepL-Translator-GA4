@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   padding: 2em;
+  padding-bottom: 0;
 }
 
 .flexCol {
@@ -43,8 +44,34 @@
   transform: translate(1rem, 0);
 }
 
-.explanation {
+.explanationContainer {
   font-size: 18px;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.a {
+  color: var(--DARK_BLUE);
+}
+
+.a:hover {
+  color: var(--DARK_RED);
+}
+
+.likesWrapper {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+}
+
+.likesContainer {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.likesContainer p {
+  margin: 0;
 }
 
 .exampleSection {
@@ -62,4 +89,6 @@
 .exampleSubTitle {
   text-align: center;
   margin-top: 0;
+  padding-bottom: 1em;
+  border-bottom: 2px solid lightgray;
 }

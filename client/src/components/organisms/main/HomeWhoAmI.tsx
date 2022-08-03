@@ -19,7 +19,19 @@ export default function HomeWhoAmI() {
               <DoubleArrowSharpIcon style={{ fontSize: "40px" }} />
             </div>
           </div>
-          <p>DeepL is blah blah blah blah</p>
+          <div className={styles.explanationContainer}>
+            <p>Name: Rina</p>
+            <p>Born in: Japan</p>
+            <p>Based in: Sydney</p>
+            <div className={styles.likesWrapper}>
+              <p>Likes:</p>
+              <div className={styles.likesContainer}>
+                <p>Piano</p>
+                <p>Escape room</p>
+                <p>JavaScript</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

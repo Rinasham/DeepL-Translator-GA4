@@ -15,7 +15,26 @@ export default function HomeIntro() {
               <DoubleArrowSharpIcon style={{ fontSize: "40px" }} />
             </div>
           </div>
-          <p className={styles.explanation}>DeepL is blah blah blah blah</p>
+          <div className={styles.explanationContainer}>
+            <p>The world's most accurate and nuanced machine translation</p>
+            <p>
+              Our innovative and award-winning breakthroughs continue to set
+              industry standards, taking us closer to our vision: creating a
+              world without language barriers.
+            </p>
+            <p>
+              More than 1 billion choose DeepL for our exceptional translation
+              quality, powered by our groundbreaking artificial intelligence
+              technology.
+            </p>
+            <a
+              target="_blank"
+              href="https://www.deepl.com/en/whydeepl"
+              className={styles.a}
+            >
+              WHAT IS DEEPL?
+            </a>
+          </div>
         </div>
         <div className={`${styles.flexCol} ${styles.flexImgBox}`}>
           <img src={deepl} style={{ width: "80%", margin: "auto" }} />
