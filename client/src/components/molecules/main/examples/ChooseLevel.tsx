@@ -1,6 +1,6 @@
 import { DownArrow } from "../../../atoms/DownArrow";
 import styles from "./Examples.module.css";
-import chooseLevel from "../../../../images/japStage.png";
+import chooseLevel from "../../../../images/chooseLevel.png";
 
 export default function ChooseLevel() {
   return (
