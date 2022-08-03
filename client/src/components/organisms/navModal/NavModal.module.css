@@ -2,23 +2,18 @@
   width: 100vw;
   height: 100vh;
   background-color: #3d94aa;
-  color: #fdfbf6;
+  color: var(--OFF_WHITE);
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-
-  /* overflow: hidden; */
 }
 
 .title {
   font-family: "Special Elite", cursive;
   font-size: 35px;
-  position: absolute;
-  top: 45vh;
-  left: 8vw;
+  letter-spacing: 2.25;
 }
 
 .title > span {
@@ -29,9 +24,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  line-height: 0.3;
   font-family: "Krona One", sans-serif;
   font-size: larger;
+  flex: 1;
+  line-height: 2;
 }
 
 .menuItems p:hover {
@@ -41,15 +37,22 @@
 }
 
 .address {
-  margin-top: 3rem;
   font-weight: lighter;
-  margin-right: 7rem;
   line-height: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-family: "Krona One", sans-serif;
   font-size: smaller;
+  flex: 1;
 }
 
-/* 優先的にレスポンシブ書く */
+.navLink {
+  color: var(--OFF_WHITE);
+  text-decoration: none;
+  margin: 0;
+}
+
+.navLink:hover {
+  color: var(--ASH_BEIGE);
+}

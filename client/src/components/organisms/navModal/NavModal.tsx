@@ -1,18 +1,46 @@
+import { Link } from "react-router-dom";
 import styles from "./NavModal.module.css";
 
-export default function NavModal() {
+type NavModalProps = {
+  setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
+  isMobile: "mobile" | "desktop";
+};
+
+export default function NavModal(props: NavModalProps) {
+  const { setModalOn, isMobile } = props;
+
+  console.log(isMobile);
+
   return (
-    <div className={styles.wrapper}>
-      <h2 className={styles.title}>
-        D E E P L <span>lerning...</span>
+    <div
+      className={styles.wrapper}
+      style={{ flexDirection: isMobile === "mobile" ? "column" : "row" }}
+    >
+      <h2
+        className={styles.title}
+        style={{ flex: isMobile === "mobile" ? "1" : "2" }}
+      >
+        AGB <span>lerning...</span>
       </h2>
       <div className={styles.menuItems}>
-        <p>HOME</p>
-        <p>LEARN</p>
-        <p>ABOUT ME</p>
+        <p
+          className={styles.navLink}
+          onClick={() => {
+            setModalOn(false);
+          }}
+        >
+          HOME
+        </p>
+        <Link to="/translator" className={styles.navLink}>
+          LEARN
+        </Link>
+        <Link to="/aboutme" className={styles.navLink}>
+          ABOUT ME
+        </Link>
       </div>
       <div className={styles.address}>
-        <p>CHATSWOOD, SYDNEY</p>
+        <p>CHATSWOOD,</p>
+        <p>SYDNEY</p>
         <p>2067</p>
         <p>AUSTRALIA</p>
       </div>
