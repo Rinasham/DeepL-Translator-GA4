@@ -53,3 +53,26 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
+.question {
+  margin: 2em auto;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.backtoMainButton {
+  /* border: 2px solid var(--ASH_BLACK); */
+  background-color: var(--LIGHT_BLUE);
+  border-radius: 8px;
+  color: var(--OFF_WHITE);
+  padding: 0.8em 3em;
+}
+
+.backtoMainButton:hover {
+  background-color: var(--DARK_BLUE);
+  color: var(--OFF_WHITE);
+}

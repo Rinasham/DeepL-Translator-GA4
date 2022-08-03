@@ -28,10 +28,8 @@
   padding: 1em;
 }
 
-.answerContentBox.yourAnswer {
-  background-color: #8acad5;
-}
-
-.answerBox > .answerContentBox.aiAnswer {
-  background-color: #9314248c;
+.answerContentBox {
+  border: 2px solid var(--ASH_BLACK);
+  border-top: none;
+  flex: 1;
 }

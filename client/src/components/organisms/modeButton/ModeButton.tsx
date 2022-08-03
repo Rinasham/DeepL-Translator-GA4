@@ -16,6 +16,7 @@ export const ModeButton = (props: ModeProps) => {
       <p>DARK</p>
       <Switch
         checked={mode.style}
+        color="default"
         onChange={switchHandler}
         inputProps={{ "aria-label": "controlled" }}
       />

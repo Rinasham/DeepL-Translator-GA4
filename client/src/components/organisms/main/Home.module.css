@@ -47,3 +47,20 @@
 .explanation {
   font-size: 18px;
 }
+
+.exampleSection {
+  display: flex;
+  flex-direction: column;
+  margin: 4em 0;
+  padding-left: 4em;
+}
+
+.exampleTitle {
+  text-align: center;
+  font-family: "Krona One", sans-serif;
+}
+
+.exampleSubTitle {
+  text-align: center;
+  margin-top: 0;
+}

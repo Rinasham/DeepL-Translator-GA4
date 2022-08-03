@@ -5,7 +5,6 @@ import { TranslateTitle } from "../../molecules/translate/TranslateTitle";
 import { Steps } from "../../molecules/translate/Steps";
 import { Form } from "../../organisms/layout/form/Form";
 import styles from "./Translator.module.css";
-
 import { useTranslator } from "../../../hooks/useTranslator";
 import { FormModal } from "../../organisms/layout/modal/FormModal";
 import { Comparison } from "../../molecules/translate/comparison/Comparison";
@@ -24,6 +23,9 @@ export default function TranslatorMain() {
     onClickConfirmation,
     answers,
     AIanswer,
+    step,
+    onClickToMain,
+    mode,
   } = useTranslator();
 
   return (
@@ -31,8 +33,10 @@ export default function TranslatorMain() {
       <Theme>
         <div className={styles.contentsWrapper}>
           <TranslateTitle language={language} />
-          <Steps language={language} />
-          <p>{selectedQuestion.selectedObj.question}</p>
+          <Steps step={step} mode={mode} />
+          <p className={styles.question}>
+            {selectedQuestion.selectedObj.question}
+          </p>
           <div>
             {language === "english" && (
               <>
@@ -42,13 +46,24 @@ export default function TranslatorMain() {
             )}
           </div>
           {language === "compare" ? (
-            <Comparison AIanswer={AIanswer} answers={answers} />
+            <>
+              <Comparison AIanswer={AIanswer} answers={answers} mode={mode} />
+              <div className={styles.buttonWrapper}>
+                <button
+                  className={styles.backtoMainButton}
+                  onClick={onClickToMain}
+                >
+                  HOME
+                </button>
+              </div>
+            </>
           ) : (
             <Form
               inputText={inputText}
               handleOpen={handleOpen}
               onChangeInputText={onChangeInputText}
               onClickSubmitForm={onClickSubmitForm}
+              mode={mode}
             />
           )}
 

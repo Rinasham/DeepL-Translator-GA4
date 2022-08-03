@@ -6,6 +6,8 @@ import { useLocation } from "react-router";
 import { Question } from "../interface/translator";
 import { userState } from "../store/userState";
 import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
+import { modeState } from "../store/modeState";
 
 export const useTranslator = () => {
   const navigation = useNavigate();
@@ -20,6 +22,8 @@ export const useTranslator = () => {
     ja_answer: "",
     en_answer: "",
   });
+  const [step, setStep] = useState<number>(0);
+  const [mode, setMode] = useRecoilState(modeState);
   const [selectedQuestion, setSelectedQuestion] = useState<{
     selectedObj: Question;
   }>(location.state as { selectedObj: Question });
@@ -48,14 +52,14 @@ export const useTranslator = () => {
       postAnswer();
       setLanguage("english");
       setInputText("");
+      setStep(step + 1);
       handleClose();
     } else if (language === "english") {
       setLanguage("compare");
+      setStep(step + 1);
       postSetQuestionDone(
         userInfo.id,
         selectedQuestion.selectedObj.id,
-        // answers.ja_answer,
-        // inputText
         answers
       );
       handleClose();
@@ -72,6 +76,10 @@ export const useTranslator = () => {
     }
   };
 
+  const onClickToMain = () => {
+    navigation("/home");
+  };
+
   return {
     onChangeInputText,
     onClickSubmitForm,
@@ -83,5 +91,8 @@ export const useTranslator = () => {
     inputText,
     answers,
     AIanswer,
+    step,
+    onClickToMain,
+    mode,
   };
 };

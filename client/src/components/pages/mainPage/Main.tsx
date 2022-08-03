@@ -12,6 +12,7 @@ import { Layout } from "../../organisms/layout/Layout";
 import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
 import { modeState } from "../../../store/modeState";
+import Example from "../../organisms/main/Example";
 
 export default function Main() {
   const [isModalOn, setModalOn] = useState<boolean>(false);
@@ -38,6 +39,7 @@ export default function Main() {
         </div>
         {isModalOn && <NavModal />}
         <div className={`${styles.descriptionContainer} styles.${isMobile}`}>
+          <Example />
           <HomeIntro />
           <HomeWhoAmI />
         </div>
