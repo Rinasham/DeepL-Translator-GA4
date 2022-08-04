@@ -7,6 +7,7 @@ export const Logout = () => {
 
   const onClickLogout = () => {
     removeCookie("userid");
+    removeCookie("name");
     removeCookie("token");
     navigation("/home");
   };
