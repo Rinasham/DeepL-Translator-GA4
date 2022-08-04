@@ -54,9 +54,13 @@ export default function Header() {
     ];
   }
 
-  const onClickLink = (href: string, type: string) => {
-    if (type) {
-      navigation(`${href}/${type}`);
+  const onClickLink = (href: string, name: string) => {
+    if (name === "Login") {
+      navigation("/authentication/login");
+    } else if (name === "Account" || name === "Learn") {
+      if (!cookies.name) {
+        navigation("/authentication/login");
+      }
     } else {
       navigation(`${href}`);
     }
@@ -92,7 +96,7 @@ export default function Header() {
                   key={idx}
                   className={styles.links}
                   onClick={() => {
-                    onClickLink(item.href, item.type);
+                    onClickLink(item.href, item.name);
                   }}
                 >
                   {item.name}

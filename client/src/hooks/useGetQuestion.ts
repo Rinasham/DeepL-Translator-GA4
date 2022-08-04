@@ -23,9 +23,6 @@ export const useQuestion = () => {
   // TranslatorStart
   const onClickLevels = async (level: string) => {
     setLoading(true);
-    if (!cookies.userid) {
-      navigation("/authentication/login");
-    }
     const [fetchedQuestions, doneQuestions] = await Promise.all([
       getAllQuestions(level),
       getDoneQuestions(cookies.userid),

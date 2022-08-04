@@ -23,10 +23,6 @@ export const useAccount = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [doneQuestions, setDoneQuestions] = useState<DoneQuestion[]>([]);
 
-  if (!cookies.name) {
-    navigation("/authentication/login");
-  }
-
   const getUserData = async () => {
     setLoading(true);
     const doneQuestionsHistory = await getUserHistory(cookies.userid);
