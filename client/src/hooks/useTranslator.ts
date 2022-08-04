@@ -4,15 +4,14 @@ import { Answers } from "../interface/translator";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import { Question } from "../interface/translator";
-import { userState } from "../store/userState";
-import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 import { modeState } from "../store/modeState";
+import { useCookies } from "react-cookie";
 
 export const useTranslator = () => {
   const navigation = useNavigate();
   const location = useLocation();
-  const userInfo = useRecoilValue(userState);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState<string>("japanese");
@@ -58,7 +57,7 @@ export const useTranslator = () => {
       setLanguage("compare");
       setStep(step + 1);
       postSetQuestionDone(
-        userInfo.id,
+        cookies.userId,
         selectedQuestion.selectedObj.id,
         answers
       );

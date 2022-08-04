@@ -1,7 +1,7 @@
 export interface User {
   id: number;
   name: string;
-  // access_token: string;
+  token: string;
 }
 
 export interface SignupUser {

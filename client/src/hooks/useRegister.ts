@@ -65,11 +65,9 @@ export const useRegister = () => {
                 if (res.status === 400 || res.status === 401) {
                   setErrorMessage(res.data.message);
                 } else if (res.success) {
-                  console.log("ナビゲーション");
-                  console.log(res.data);
-
                   setCookie("userid", res.data.userId);
                   setCookie("token", res.data.token);
+                  setCookie("name", res.data.userName);
                 }
               })
               .catch((err) => console.log(err))
@@ -92,12 +90,15 @@ export const useRegister = () => {
       setIsLoading(true);
       postLogin({ user_name: userName, password: password })
         .then((res) => {
+          console.log(res);
+
           if (res.status === 400 || res.status === 401) {
             setErrorMessage(res.data.message);
           } else {
             if (res.success) {
               setCookie("userid", res.userId);
               setCookie("token", res.token);
+              setCookie("name", res.userName);
 
               navigate("/home");
             }

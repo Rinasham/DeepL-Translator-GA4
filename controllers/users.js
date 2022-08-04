@@ -105,18 +105,4 @@ router.post("/login", (req, res) => {
     });
 });
 
-// router.get("/", (req, res) => {
-//   res.json(req.session);
-// });
-
-// router.delete("/", (req, res) => {
-//   req.session.destroy();
-//   res.status(200).json({ success: true });
-// });
-
-// router.get('jwt', (req,res) => {
-//   const token =
-//   res.cookie('token', token, { httpOnly: true });
-// })
-
 module.exports = router;

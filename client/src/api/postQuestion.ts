@@ -38,16 +38,3 @@ export const postSetQuestionDone = (
       console.log(err);
     });
 };
-// export const postEnglishAnswer = (engAnswer: string) => {
-//   return axios
-//     .post(`${URL}api/translate/checkanswer/en`, {
-//       answer: engAnswer,
-//     })
-//     .then((res) => {
-//       console.log(res.data);
-//       return res.data;
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
