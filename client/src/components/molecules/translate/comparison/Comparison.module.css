@@ -9,6 +9,7 @@
   flex-direction: column;
   color: var(--OFF_WHITE);
   width: 50%;
+  margin-bottom: 3em;
 }
 
 .answerTitle {
@@ -16,7 +17,7 @@
 }
 
 .answerTitle.yourAnswer {
-  background-color: var(--DARK_GREEN);
+  background-color: gray;
 }
 
 .answerTitle.aiAnswer {

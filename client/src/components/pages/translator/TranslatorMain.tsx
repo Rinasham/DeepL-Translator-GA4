@@ -3,11 +3,12 @@ import { useQuestion } from "../../../hooks/useGetQuestion";
 import Theme from "../../organisms/theme/Theme";
 import { TranslateTitle } from "../../molecules/translate/TranslateTitle";
 import { Steps } from "../../molecules/translate/Steps";
-import { Form } from "../../organisms/layout/form/Form";
+import { Form } from "../../organisms/form/Form";
 import styles from "./Translator.module.css";
 import { useTranslator } from "../../../hooks/useTranslator";
 import { FormModal } from "../../organisms/layout/modal/FormModal";
 import { Comparison } from "../../molecules/translate/comparison/Comparison";
+import { PrimaryButton } from "../../atoms/Buttons";
 
 export default function TranslatorMain() {
   const { selectedQuestion } = useQuestion();
@@ -48,14 +49,15 @@ export default function TranslatorMain() {
           {language === "compare" ? (
             <>
               <Comparison AIanswer={AIanswer} answers={answers} mode={mode} />
-              <div className={styles.buttonWrapper}>
+              {/* <div className={styles.buttonWrapper}>
                 <button
                   className={styles.backtoMainButton}
                   onClick={onClickToMain}
                 >
                   HOME
                 </button>
-              </div>
+              </div> */}
+              <PrimaryButton text="HOME" onClickFunc={onClickToMain} />
             </>
           ) : (
             <Form
