@@ -80,7 +80,8 @@ router.post("/done", (req, res) => {
     .then(() => {
       res.json({ success: true });
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       res.status(500).json({ success: false });
     });
 });

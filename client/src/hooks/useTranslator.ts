@@ -57,7 +57,7 @@ export const useTranslator = () => {
       setLanguage("compare");
       setStep(step + 1);
       postSetQuestionDone(
-        cookies.userId,
+        cookies.userid,
         selectedQuestion.selectedObj.id,
         answers
       );
