@@ -59,7 +59,8 @@ export const useTranslator = () => {
       postSetQuestionDone(
         cookies.userid,
         selectedQuestion.selectedObj.id,
-        answers
+        answers,
+        AIanswer
       );
       handleClose();
     }

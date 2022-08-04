@@ -22,13 +22,15 @@ export const postJapaneseAnswer = (japAnswer: string) => {
 export const postSetQuestionDone = (
   userid: number,
   questionid: number,
-  answers: Answers
+  answers: Answers,
+  AIanswer: string
 ) => {
   return axios
     .post(`${URL}api/translate/done`, {
       userid: userid,
       questionid: questionid,
       answers: answers,
+      AIanswer,
     })
     .then((res: AxiosResponse<TranslateResponse>) => {
       console.log(res.data);
