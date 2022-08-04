@@ -13,7 +13,6 @@ export const postLogin = async (props: SignupUser) => {
 
   try {
     const result = await axios.post<User>(`${URL}api/users/login`, formData);
-    console.log(result.data);
 
     return result.data;
   } catch (err: any) {

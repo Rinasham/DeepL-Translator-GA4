@@ -58,8 +58,6 @@ export default function Header() {
     if (name === "Login") {
       navigation("/authentication/login");
     } else if (name === "Account" || name === "Learn") {
-      console.log(cookies.name);
-
       if (!cookies.name) {
         navigation("/authentication/login");
       } else {
