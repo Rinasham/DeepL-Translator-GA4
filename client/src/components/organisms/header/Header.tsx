@@ -35,12 +35,7 @@ const avatarStyle = {
 export default function Header() {
   const navigation = useNavigate();
   const isSM = useMediaQuery({ query: "(max-width: 600px)" });
-  const {
-    isBurgerMenuOpen,
-    setBurgerMenuOpen,
-    openBurgerMenu,
-    closeBurgerMenu,
-  } = useHeader();
+  const { isBurgerMenuOpen, openBurgerMenu, closeBurgerMenu } = useHeader();
   const [cookies, setCookie, removeCookie] = useCookies();
 
   if (cookies.token) {
@@ -68,7 +63,6 @@ export default function Header() {
   };
 
   return (
-    // <div>
     <Box sx={{ flexGrow: 1 }} className={styles.headerWrapper}>
       <AppBar
         position="static"
@@ -119,7 +113,10 @@ export default function Header() {
           <ul>
             {navigationLinks.map((item, idx) => (
               <li key={idx}>
-                <Link className={styles.links} to={item.href}>
+                <Link
+                  className={styles.links}
+                  to={item.type ? `${item.href}/${item.type}` : `${item.href}`}
+                >
                   {item.name}
                 </Link>
               </li>
@@ -128,6 +125,5 @@ export default function Header() {
         </SwipeableDrawer>
       </AppBar>
     </Box>
-    // </div>
   );
 }
