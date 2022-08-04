@@ -18,17 +18,6 @@
   margin-bottom: 5%;
 }
 
-.button {
-  width: 100%;
-  padding: 0.5em !important;
-  background-color: var(--DARK_GREEN) !important;
-  color: var(--ASH_BEIGE) !important;
-}
-
-.button:hover {
-  background-color: var(--DARK_BLUE);
-}
-
 .errorMessage {
   color: var(--DARK_RED);
   margin: 2%;

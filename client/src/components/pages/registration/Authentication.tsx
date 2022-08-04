@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Registration.module.css";
-import { Button, Input } from "@mui/material";
+import { Input } from "@mui/material";
 import { useRegister } from "../../../hooks/useRegister";
+import { PrimaryButton } from "../../atoms/Buttons";
 
 export const Authentication: React.FC = () => {
   const {
@@ -45,17 +46,9 @@ export const Authentication: React.FC = () => {
         )}
 
         {authMode === "signup" ? (
-          <Button
-            className={styles.button}
-            size="small"
-            onClick={onClickSignUp}
-          >
-            SIGN UP
-          </Button>
+          <PrimaryButton text="SIGN UP" onClickFunc={onClickSignUp} />
         ) : (
-          <Button className={styles.button} size="small" onClick={onClickLogin}>
-            LOG IN
-          </Button>
+          <PrimaryButton text="LOG IN" onClickFunc={onClickLogin} />
         )}
       </div>
       <p className={styles.changeMode} onClick={changeMode}>

@@ -1,0 +1,10 @@
+.button {
+  width: 100%;
+  padding: 0.7em !important;
+  background-color: var(--DARK_GREEN) !important;
+  color: var(--ASH_BEIGE) !important;
+}
+
+.button:hover {
+  background-color: var(--DARK_BLUE);
+}
