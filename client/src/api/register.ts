@@ -31,7 +31,7 @@ export const postSignUp = async (props: SignupUser) => {
 
   try {
     const result = await axios.post<User>(`${URL}api/users/signup`, formData);
-    console.log(result);
+
     return result.data;
   } catch (err: any) {
     return err.response;

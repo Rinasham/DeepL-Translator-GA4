@@ -56,18 +56,18 @@ export const useRegister = () => {
       setIsLoading(true);
       postSignUp({ user_name: userName, password: password })
         .then((result) => {
-          if (result.status === 400 || result.status === 401) {
+          if (!result.success) {
             setErrorMessage(result.data.message);
           } else {
             postLogin({ user_name: userName, password: password })
               .then((res) => {
-                console.log(res.status + " :login");
-                if (res.status === 400 || res.status === 401) {
+                if (!res.success) {
                   setErrorMessage(res.data.message);
-                } else if (res.success) {
-                  setCookie("userid", res.data.userId);
-                  setCookie("token", res.data.token);
-                  setCookie("name", res.data.userName);
+                } else {
+                  setCookie("userid", res.userId);
+                  setCookie("token", res.token);
+                  setCookie("name", res.userName);
+                  navigate("/home");
                 }
               })
               .catch((err) => console.log(err))
@@ -92,7 +92,7 @@ export const useRegister = () => {
         .then((res) => {
           console.log(res);
 
-          if (res.status === 400 || res.status === 401) {
+          if (!res.success) {
             setErrorMessage(res.data.message);
           } else {
             if (res.success) {
