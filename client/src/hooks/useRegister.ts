@@ -56,11 +56,15 @@ export const useRegister = () => {
       setIsLoading(true);
       postSignUp({ user_name: userName, password: password })
         .then((result) => {
+          console.log(result);
+
           if (!result.success) {
             setErrorMessage(result.data.message);
           } else {
             postLogin({ user_name: userName, password: password })
               .then((res) => {
+                console.log(res);
+
                 if (!res.success) {
                   setErrorMessage(res.data.message);
                 } else {

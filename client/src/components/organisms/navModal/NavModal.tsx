@@ -9,8 +9,6 @@ type NavModalProps = {
 export default function NavModal(props: NavModalProps) {
   const { setModalOn, isMobile } = props;
 
-  console.log(isMobile);
-
   return (
     <div
       className={styles.wrapper}
