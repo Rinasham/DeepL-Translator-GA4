@@ -32,31 +32,36 @@ export default function TranslatorStart() {
                 return (
                   <li
                     key={idx}
-                    className={`${modeStyle} styles.questionLi`}
+                    className={styles.questionLi}
                     style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      color: mode.style ? "#384449" : "#ffffff",
                     }}
                     onClick={() => {
                       onClickToMainPage(question);
                     }}
                   >
+                    <Link
+                      to="translator-main"
+                      className={styles.link}
+                      style={{
+                        color: finifhedQuestions.includes(question.id)
+                          ? "lightgray"
+                          : "#384449",
+                      }}
+                    >
+                      {question.question}
+                    </Link>
                     {finifhedQuestions.includes(question.id) ? (
                       <DoneIcon
                         style={{
                           fontSize: "20px",
-                          marginRight: "1em",
+                          marginLeft: "1em",
                           color: "#931424",
                         }}
                       />
                     ) : (
                       ""
                     )}
-
-                    <Link to="translator-main" className={styles.link}>
-                      {question.question}
-                    </Link>
                   </li>
                 );
               })}
