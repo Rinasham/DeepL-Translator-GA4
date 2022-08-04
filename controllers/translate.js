@@ -8,10 +8,6 @@ app.use(express.json());
 
 const router = express.Router();
 
-// bd.query("SELECT * FROM questions ORDER_BY RANDOM() limit 1").then(
-//   (dbRes) => {}
-// );
-
 router.get("/:level", auth, (req, res) => {
   db.query(`SELECT * FROM questions WHERE level='${req.params.level}'`)
     .then((dbRes) => {

@@ -1,0 +1,15 @@
+.accountWrapper {
+  height: 100vh;
+  width: 90%;
+  margin: auto;
+  background-color: var(--OFF_WHITE);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.container {
+  width: 100%;
+  flex-grow: 1;
+}

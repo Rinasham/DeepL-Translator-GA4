@@ -45,9 +45,6 @@ export const useQuestion = () => {
 
   // TrasnslatorStart
   const onClickToMainPage = (questionObj: Question) => {
-    // setSelectedQuestion(questionObj);
-    console.log(questionObj);
-
     navigation(`/translator-main`, {
       state: { selectedObj: questionObj },
     });

@@ -1,15 +1,15 @@
 import axios from "axios";
+
 // const URL: string | undefined = process.env.REACT_APP_LOCAL_API;
 const URL: string | undefined = "/";
 
 axios.defaults.withCredentials = true;
 
-export const getUser = () => {
+export const getUserHistory = (userid: number) => {
   return axios
-    .get(`${URL}api/account`)
+    .get(`${URL}api/account/history/${userid}`)
     .then((res) => {
-      console.log(res);
-      return res;
+      return res.data.histories;
     })
     .catch((err) => {
       console.log(err);

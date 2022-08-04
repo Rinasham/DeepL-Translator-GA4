@@ -7,9 +7,16 @@ app.use(express.json());
 
 const router = express.Router();
 
-router.get("/", auth, (req, res) => {
-  console.log("auth ok");
-  res.json({ success: true });
+// get questions done by a user
+router.get("/history/:userid", auth, (req, res) => {
+  db.query(
+    `SELECT * FROM done_questions INNER JOIN questions ON done_questions.question_id = questions.id WHERE user_id=${req.params.userid}`
+  ).then((dbRes) => {
+    return res.json({
+      success: true,
+      histories: dbRes.rows,
+    });
+  });
 });
 
 module.exports = router;
