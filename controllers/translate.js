@@ -69,13 +69,14 @@ router.get("/done/:userid", auth, (req, res) => {
 
 // insert DONE QUESTION into done_question table when a user finishes a question
 router.post("/done", (req, res) => {
-  const sql = `INSERT INTO done_questions (user_id, question_id, jap_answer, eng_answer, favorite) VALUES ($1, $2, $3, $4 ,false);`;
+  const sql = `INSERT INTO done_questions (user_id, question_id, jap_answer, eng_answer, ai_answer, favorite) VALUES ($1, $2, $3, $4, $5 ,false);`;
 
   db.query(sql, [
     req.body.userid,
     req.body.questionid,
     req.body.answers.ja_answer,
     req.body.answers.en_answer,
+    req.body.AIanswer,
   ])
     .then(() => {
       res.json({ success: true });

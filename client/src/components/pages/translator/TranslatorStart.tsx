@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Layout } from "../../organisms/layout/Layout";
 import { useRecoilValue } from "recoil";
 import { modeState } from "../../../store/modeState";
+import DoneIcon from "@mui/icons-material/Done";
 
 export default function TranslatorStart() {
   const {
@@ -42,20 +43,13 @@ export default function TranslatorStart() {
                     }}
                   >
                     {finifhedQuestions.includes(question.id) ? (
-                      <svg
-                        className={styles.checkIcon}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                      </svg>
+                      <DoneIcon
+                        style={{
+                          fontSize: "20px",
+                          marginRight: "1em",
+                          color: "#931424",
+                        }}
+                      />
                     ) : (
                       ""
                     )}

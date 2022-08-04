@@ -16,22 +16,28 @@ export const Comparison = (props: ComparisonProps) => {
     <div className={styles.comparisonWrapper}>
       <div className={styles.answerBox}>
         <div className={`${styles.answerTitle} ${styles.yourAnswer}`}>
-          あなたの回答
+          あなたの解答
         </div>
         <div
           className={styles.answerContentBox}
-          style={{ color: mode.style ? "#384449" : "#fdfbf6" }}
+          style={{
+            color: mode.style ? "#384449" : "#fdfbf6",
+            border: mode.style ? "#384449  1px solid" : "gray 1px solid",
+          }}
         >
           {answers.en_answer}
         </div>
       </div>
       <div className={styles.answerBox}>
         <div className={`${styles.answerTitle} ${styles.aiAnswer}`}>
-          AIの回答
+          AIの解答
         </div>
         <div
           className={styles.answerContentBox}
-          style={{ color: mode.style ? "#384449" : "#fdfbf6" }}
+          style={{
+            color: mode.style ? "#384449" : "#fdfbf6",
+            border: mode.style ? "#384449  1px solid" : "gray 1px solid",
+          }}
         >
           {AIanswer}
         </div>

@@ -1,7 +1,7 @@
 import styles from "./Buttons.module.css";
 
 type PrimaryButtonProps = {
-  onClickFunc: () => void;
+  onClickFunc: any;
   text: string;
 };
 

@@ -13,3 +13,74 @@
   width: 100%;
   flex-grow: 1;
 }
+
+.cellQuestion {
+  padding-left: 2em;
+  font-weight: 700;
+}
+
+.pencilIcon {
+  cursor: pointer;
+  padding-right: 1em;
+}
+
+.detailWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+}
+
+.detailFlexItems {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+  width: 80%;
+  margin-right: auto;
+  padding-left: 1em;
+  border-bottom: 1px solid lightgray;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* ======= Comparison Section ============== */
+.comparisonWrapper {
+  display: flex;
+  width: 100%;
+  gap: 0.6em;
+  margin-top: 3em;
+}
+
+.answerBox {
+  display: flex;
+  flex-direction: column;
+  color: var(--OFF_WHITE);
+  width: 50%;
+  margin-bottom: 3em;
+}
+
+.answerTitle {
+  padding: 0.5em;
+}
+
+.answerTitle.yourAnswer {
+  background-color: gray;
+}
+
+.answerTitle.aiAnswer {
+  background-color: var(--DARK_RED);
+}
+
+.answerContentBox {
+  color: var(--ASH_BLACK);
+  padding: 1em;
+}
+
+.answerContentBox {
+  flex: 1;
+  border-top: none;
+}

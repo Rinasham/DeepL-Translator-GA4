@@ -25,12 +25,9 @@
   object-fit: contain;
 }
 
-.descriptionContainer.desktop {
+.descriptionContainer {
   padding: 1rem 2rem;
   display: flex;
-}
-.descriptionContainer.mobile {
-  display: flex;
   flex-direction: column;
-  padding: 1rem 1rem;
+  margin-bottom: 4em;
 }

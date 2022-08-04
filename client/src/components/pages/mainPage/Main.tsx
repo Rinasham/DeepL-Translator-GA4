@@ -38,7 +38,7 @@ export default function Main() {
           </div>
         </div>
         {isModalOn && <NavModal setModalOn={setModalOn} isMobile={isMobile} />}
-        <div className={`${styles.descriptionContainer} styles.${isMobile}`}>
+        <div className={styles.descriptionContainer}>
           <Example />
           <HomeIntro />
           <HomeWhoAmI />

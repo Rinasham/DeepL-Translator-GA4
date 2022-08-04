@@ -15,6 +15,7 @@ CREATE TABLE done_questions(
   question_id INT REFERENCES questions(id) NOT NULL,
   jap_answer VARCHAR(255),
   eng_answer VARCHAR(255),
+  ai_answer VARCHAR(255),
   memo TEXT,
   favorite BOOLEAN DEFAULT false NOT NULL
 );

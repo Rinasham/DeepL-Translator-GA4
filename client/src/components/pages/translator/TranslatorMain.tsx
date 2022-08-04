@@ -41,7 +41,7 @@ export default function TranslatorMain() {
           <div>
             {language === "english" && (
               <>
-                <p>あなたの回答</p>
+                <p>あなたの解答</p>
                 <p>{answers.ja_answer}</p>
               </>
             )}
@@ -49,14 +49,6 @@ export default function TranslatorMain() {
           {language === "compare" ? (
             <>
               <Comparison AIanswer={AIanswer} answers={answers} mode={mode} />
-              {/* <div className={styles.buttonWrapper}>
-                <button
-                  className={styles.backtoMainButton}
-                  onClick={onClickToMain}
-                >
-                  HOME
-                </button>
-              </div> */}
               <PrimaryButton text="HOME" onClickFunc={onClickToMain} />
             </>
           ) : (

@@ -30,7 +30,6 @@
 }
 
 .answerContentBox {
-  border: 2px solid var(--ASH_BLACK);
-  border-top: none;
   flex: 1;
+  border-top: none;
 }
