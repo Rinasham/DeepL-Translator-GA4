@@ -19,4 +19,15 @@ router.get("/history/:userid", auth, (req, res) => {
   });
 });
 
+router.get("/history/custom/:userid", auth, (req, res) => {
+  db.query(
+    `SELECT * FROM custom_done_questions INNER JOIN custom_questions ON custom_done_questions.question_id = custom_questions.id WHERE custom_done_questions.user_id=${req.params.userid}`
+  ).then((dbRes) => {
+    return res.json({
+      success: true,
+      histories: dbRes.rows,
+    });
+  });
+});
+
 module.exports = router;

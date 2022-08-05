@@ -34,6 +34,9 @@ export default function NavModal(props: NavModalProps) {
         <Link to="/translator" className={styles.navLink}>
           LEARN
         </Link>
+        <Link to="/account" className={styles.navLink}>
+          ACCOUNT
+        </Link>
         <Link to="/aboutme" className={styles.navLink}>
           ABOUT ME
         </Link>

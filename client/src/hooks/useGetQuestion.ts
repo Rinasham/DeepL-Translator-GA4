@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useLocation } from "react-router";
 import { useNavigate } from "react-router";
-import { Question } from "../interface/translator";
+import { Question, CustomQuestion } from "../interface/translator";
 import { useCookies } from "react-cookie";
-import { getAllQuestions, getDoneQuestions } from "../api/getQuestion";
+import {
+  getAllQuestions,
+  getCustomQuestions,
+  getDoneQuestions,
+} from "../api/getQuestion";
 
 export const useQuestion = () => {
   const navigation = useNavigate();
@@ -18,11 +22,13 @@ export const useQuestion = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isLevelSelected, setLevelSelected] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [isCustomMode, setCustomMode] = useState<boolean>(false);
   const [finifhedQuestions, setFinishedQuestions] = useState<number[]>([]);
 
   // TranslatorStart
   const onClickLevels = async (level: string) => {
     setLoading(true);
+    setCustomMode(false);
     const [fetchedQuestions, doneQuestions] = await Promise.all([
       getAllQuestions(level),
       getDoneQuestions(cookies.userid),
@@ -40,10 +46,22 @@ export const useQuestion = () => {
     setLoading(false);
   };
 
+  const onClickCustomQuestion = async () => {
+    setLoading(true);
+    setCustomMode(true);
+    const customQuestionsRes = await getCustomQuestions(cookies.userid);
+    console.log(customQuestionsRes);
+    if (customQuestionsRes.length !== 0) {
+      setQuestions(customQuestionsRes);
+    }
+    setLevelSelected(true);
+    setLoading(false);
+  };
+
   // TrasnslatorStart
   const onClickToMainPage = (questionObj: Question) => {
     navigation(`/translator-main`, {
-      state: { selectedObj: questionObj },
+      state: { selectedObj: questionObj, isCustom: isCustomMode },
     });
   };
 
@@ -58,5 +76,6 @@ export const useQuestion = () => {
     // intQuestionId,
     onClickToMainPage,
     finifhedQuestions,
+    onClickCustomQuestion,
   };
 };

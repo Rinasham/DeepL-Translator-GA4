@@ -1,7 +1,7 @@
 import Theme from "../../organisms/theme/Theme";
 import styles from "./Translator.module.css";
 import { useQuestion } from "../../../hooks/useGetQuestion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Layout } from "../../organisms/layout/Layout";
 import { useRecoilValue } from "recoil";
 import { modeState } from "../../../store/modeState";
@@ -19,10 +19,11 @@ export default function TranslatorStart() {
     questions,
     onClickToMainPage,
     finifhedQuestions,
+    onClickCustomQuestion,
   } = useQuestion();
+  const navigation = useNavigate();
 
   const mode = useRecoilValue(modeState);
-  const modeStyle = mode.style ? "light" : "dark";
 
   const [isModalOn, setModalOn] = useState<boolean>(false);
   const isSM = useMediaQuery({ query: "(max-width: 600px)" });
@@ -77,27 +78,23 @@ export default function TranslatorStart() {
           ) : (
             <>
               <h1>CHOOSE LEVEL</h1>
-              <div className="boxWrapper">
+              <div>
                 <ul>
                   <li
-                    className={`${modeStyle}`}
+                    className={styles.li}
                     onClick={() => {
                       onClickLevels("easy");
                     }}
                   >
-                    <button className={`${modeStyle} ${styles.chooseButton}`}>
-                      EASY
-                    </button>
+                    <button className={styles.chooseButton}>EASY</button>
                   </li>
                   <li
-                    className={`${modeStyle} `}
+                    className={styles.li}
                     onClick={() => {
                       onClickLevels("normal");
                     }}
                   >
-                    <button className={`${modeStyle} ${styles.chooseButton}`}>
-                      NORMAL
-                    </button>
+                    <button className={styles.chooseButton}>NORMAL</button>
                   </li>
                   <li
                     className={styles.li}
@@ -105,10 +102,26 @@ export default function TranslatorStart() {
                       onClickLevels("hard");
                     }}
                   >
-                    <button className={`${modeStyle} ${styles.chooseButton}`}>
-                      HARD
-                    </button>
+                    <button className={styles.chooseButton}>HARD</button>
                   </li>
+                  <div className={styles.customBox}>
+                    <li
+                      className={styles.li}
+                      onClick={() => {
+                        onClickCustomQuestion();
+                      }}
+                    >
+                      <button className={styles.chooseButton}>CUSTOM</button>
+                    </li>
+                    <button
+                      onClick={() => {
+                        navigation("/create-custom");
+                      }}
+                      className={styles.addCustomButton}
+                    >
+                      ADD
+                    </button>
+                  </div>
                 </ul>
               </div>
             </>

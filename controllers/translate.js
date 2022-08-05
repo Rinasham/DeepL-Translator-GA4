@@ -18,6 +18,35 @@ router.get("/:level", auth, (req, res) => {
     });
 });
 
+// get user's custom questions
+router.get("/custom/:userid", auth, (req, res) => {
+  db.query(
+    `SELECT id, question FROM custom_questions WHERE user_id='${req.params.userid}'`
+  )
+    .then((dbRes) => {
+      res.json(dbRes.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ success: false });
+    });
+});
+
+// add user's custom question
+router.post("/custom/:userid", auth, (req, res) => {
+  const question = req.body.question;
+
+  const sql = `INSERT INTO custom_questions (user_id, question) VALUES ($1, $2)`;
+  db.query(sql, [req.params.userid, question])
+    .then((dbRes) => {
+      res.json(dbRes.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ success: false });
+    });
+});
+
 router.get("/question/:selectedQuestion", (req, res) => {
   db.query(`SELECT * FROM questions WHERE id=${req.params.selectedQuestion}`)
     .then((dbRes) => {
@@ -70,6 +99,26 @@ router.get("/done/:userid", auth, (req, res) => {
 // insert DONE QUESTION into done_question table when a user finishes a question
 router.post("/done", (req, res) => {
   const sql = `INSERT INTO done_questions (user_id, question_id, jap_answer, eng_answer, ai_answer, favorite) VALUES ($1, $2, $3, $4, $5 ,false);`;
+
+  db.query(sql, [
+    req.body.userid,
+    req.body.questionid,
+    req.body.answers.ja_answer,
+    req.body.answers.en_answer,
+    req.body.AIanswer,
+  ])
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ success: false });
+    });
+});
+
+// insert DONE QUESTION into done_question table when a user finishes a question
+router.post("/done/custom", (req, res) => {
+  const sql = `INSERT INTO custom_done_questions (user_id, question_id, jap_answer, eng_answer, ai_answer, favorite) VALUES ($1, $2, $3, $4, $5 ,false);`;
 
   db.query(sql, [
     req.body.userid,

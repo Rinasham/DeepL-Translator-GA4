@@ -15,3 +15,16 @@ export const getUserHistory = (userid: number) => {
       console.log(err);
     });
 };
+
+export const getCustomHistory = (userid: number) => {
+  return axios
+    .get(`${URL}api/account/history/custom/${userid}`)
+    .then((res) => {
+      console.log(res.data);
+
+      return res.data.histories;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

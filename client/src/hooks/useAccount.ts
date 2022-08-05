@@ -1,6 +1,6 @@
 import { DoneQuestion } from "./../interface/account";
 import { useNavigate } from "react-router";
-import { getUserHistory } from "../api/getUser";
+import { getUserHistory, getCustomHistory } from "../api/getUser";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
@@ -14,10 +14,16 @@ export const useAccount = () => {
 
   const getUserData = async () => {
     setLoading(true);
-    const doneQuestionsHistory = await getUserHistory(cookies.userid);
+    const [doneQuestionsHistory, customDoneHistory] = await Promise.all([
+      getUserHistory(cookies.userid),
+      getCustomHistory(cookies.userid),
+    ]);
     // console.log(doneQuestionsHistory);
     if (doneQuestionsHistory) {
-      setDoneQuestions(doneQuestionsHistory);
+      const allHistory = [...doneQuestionsHistory, ...customDoneHistory];
+      console.log(allHistory);
+
+      setDoneQuestions(allHistory);
     }
     setLoading(false);
   };

@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { postJapaneseAnswer, postSetQuestionDone } from "../api/postQuestion";
+import {
+  postJapaneseAnswer,
+  postSetQuestionDone,
+  postCustomQuestionDone,
+} from "../api/postQuestion";
 import { Answers } from "../interface/translator";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
@@ -23,9 +27,10 @@ export const useTranslator = () => {
   });
   const [step, setStep] = useState<number>(0);
   const [mode, setMode] = useRecoilState(modeState);
-  const [selectedQuestion, setSelectedQuestion] = useState<{
+  const [locationInfo, setLocationInfo] = useState<{
     selectedObj: Question;
-  }>(location.state as { selectedObj: Question });
+    isCustom: boolean;
+  }>(location.state as { selectedObj: Question; isCustom: boolean });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,6 +50,8 @@ export const useTranslator = () => {
     }
   };
 
+  console.log(locationInfo);
+
   // post answer to server
   const onClickConfirmation = () => {
     if (language === "japanese") {
@@ -56,12 +63,26 @@ export const useTranslator = () => {
     } else if (language === "english") {
       setLanguage("compare");
       setStep(step + 1);
-      postSetQuestionDone(
-        cookies.userid,
-        selectedQuestion.selectedObj.id,
-        answers,
-        AIanswer
-      );
+      // もしCustomeモードならdone_custome テーブルにインサート
+      // 違うならdone_question テーブルにインサート
+      if (locationInfo.isCustom) {
+        console.log("custom doneにpost送信");
+        postCustomQuestionDone(
+          cookies.userid,
+          locationInfo.selectedObj.id,
+          answers,
+          AIanswer
+        );
+      } else {
+        console.log("not カスタム");
+
+        postSetQuestionDone(
+          cookies.userid,
+          locationInfo.selectedObj.id,
+          answers,
+          AIanswer
+        );
+      }
       handleClose();
     }
   };

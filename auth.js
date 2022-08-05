@@ -5,6 +5,7 @@ function auth(req, res, next) {
   try {
     const cookieSplitArr = req.headers.cookie.split(";");
     const token = cookieSplitArr[1].replace(" token=", "");
+    // console.log(token);
     const decoded = jwt.verify(token, config.jwt.secret);
 
     next();

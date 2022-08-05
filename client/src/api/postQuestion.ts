@@ -40,3 +40,25 @@ export const postSetQuestionDone = (
       console.log(err);
     });
 };
+
+export const postCustomQuestionDone = (
+  userid: number,
+  questionid: number,
+  answers: Answers,
+  AIanswer: string
+) => {
+  return axios
+    .post(`${URL}api/translate/done/custom`, {
+      userid: userid,
+      questionid: questionid,
+      answers: answers,
+      AIanswer,
+    })
+    .then((res: AxiosResponse<TranslateResponse>) => {
+      console.log(res);
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

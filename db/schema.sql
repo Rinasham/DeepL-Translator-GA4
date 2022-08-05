@@ -9,10 +9,27 @@ CREATE TABLE users(
   password_hash VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE custom_questions(
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INT NOT NULL REFERENCES users(id),
+  question VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE done_questions(
 	id SERIAL PRIMARY KEY NOT NULL,
 	user_id INT NOT NULL REFERENCES users(id),
   question_id INT REFERENCES questions(id) NOT NULL,
+  jap_answer VARCHAR(255),
+  eng_answer VARCHAR(255),
+  ai_answer VARCHAR(255),
+  memo TEXT,
+  favorite BOOLEAN DEFAULT false NOT NULL
+);
+
+CREATE TABLE custom_done_questions(
+	id SERIAL PRIMARY KEY NOT NULL,
+	user_id INT NOT NULL REFERENCES users(id),
+  question_id INT REFERENCES custom_questions(id) NOT NULL,
   jap_answer VARCHAR(255),
   eng_answer VARCHAR(255),
   ai_answer VARCHAR(255),

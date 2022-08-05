@@ -1,9 +1,14 @@
 export type Question = {
   id: number;
   question: string;
-  description: string;
-  level: string;
-  genre: string;
+  description?: string;
+  level?: string;
+  genre?: string;
+};
+
+export type CustomQuestion = {
+  id: number;
+  question: string;
 };
 
 export type Answers = {

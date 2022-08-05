@@ -29,6 +29,19 @@ button:hover {
   align-items: baseline;
 }
 
+.customBox {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.addCustomButton {
+  background-color: var(--DARK_GREEN);
+  color: var(--OFF_WHITE);
+  padding: 0.5em 3em;
+  border-radius: 9999px;
+}
+
 .checkIcon {
   width: 6%;
   margin-right: 1em;

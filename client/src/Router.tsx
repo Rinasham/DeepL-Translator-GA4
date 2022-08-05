@@ -9,6 +9,7 @@ import TranslatorMain from "./components/pages/translator/TranslatorMain";
 import { ServerError } from "./components/pages/errorPages/ServerError";
 import { Logout } from "./components/pages/registration/Logout";
 import { AboutMe } from "./components/pages/aboutMe/AboutMe";
+import { AddCustomQuestion } from "../src/components/organisms/custom/AddCustomQuestion";
 
 export const Router: () => JSX.Element = () => {
   return (
@@ -21,6 +22,7 @@ export const Router: () => JSX.Element = () => {
           <Route path={`/logout`} element={<Logout />} />
           <Route path={`/translator`} element={<TranslatorStart />} />
           <Route path={`/translator-main`} element={<TranslatorMain />} />
+          <Route path={`/create-custom`} element={<AddCustomQuestion />} />
           <Route path={`/account`} element={<Account />} />
           <Route path={`/aboutme`} element={<AboutMe />} />
           <Route path={`/server-error`} element={<ServerError />} />
