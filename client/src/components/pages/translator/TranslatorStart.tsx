@@ -6,6 +6,10 @@ import { Layout } from "../../organisms/layout/Layout";
 import { useRecoilValue } from "recoil";
 import { modeState } from "../../../store/modeState";
 import DoneIcon from "@mui/icons-material/Done";
+import NavModal from "../../organisms/navModal/NavModal";
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import ModalButton from "../../molecules/modalButton/ModalButton";
 
 export default function TranslatorStart() {
   const {
@@ -19,6 +23,10 @@ export default function TranslatorStart() {
 
   const mode = useRecoilValue(modeState);
   const modeStyle = mode.style ? "light" : "dark";
+
+  const [isModalOn, setModalOn] = useState<boolean>(false);
+  const isSM = useMediaQuery({ query: "(max-width: 600px)" });
+  const isMobile = isSM ? "mobile" : "desktop";
 
   return (
     <Layout>
@@ -105,6 +113,10 @@ export default function TranslatorStart() {
               </div>
             </>
           )}
+          {isModalOn && (
+            <NavModal setModalOn={setModalOn} isMobile={isMobile} />
+          )}
+          <ModalButton isModalOn={isModalOn} setModalOn={setModalOn} />
         </div>
       </Theme>
     </Layout>

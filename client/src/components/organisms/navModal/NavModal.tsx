@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavModal.module.css";
 
 type NavModalProps = {
@@ -8,6 +8,7 @@ type NavModalProps = {
 
 export default function NavModal(props: NavModalProps) {
   const { setModalOn, isMobile } = props;
+  const navigation = useNavigate();
 
   return (
     <div
@@ -25,6 +26,7 @@ export default function NavModal(props: NavModalProps) {
           className={styles.navLink}
           onClick={() => {
             setModalOn(false);
+            navigation("/home");
           }}
         >
           HOME

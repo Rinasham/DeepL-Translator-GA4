@@ -9,9 +9,16 @@ import { useTranslator } from "../../../hooks/useTranslator";
 import { FormModal } from "../../organisms/layout/modal/FormModal";
 import { Comparison } from "../../molecules/translate/comparison/Comparison";
 import { PrimaryButton } from "../../atoms/Buttons";
+import NavModal from "../../organisms/navModal/NavModal";
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import ModalButton from "../../molecules/modalButton/ModalButton";
 
 export default function TranslatorMain() {
   const { selectedQuestion } = useQuestion();
+  const [isModalOn, setModalOn] = useState<boolean>(false);
+  const isSM = useMediaQuery({ query: "(max-width: 600px)" });
+  const isMobile = isSM ? "mobile" : "desktop";
 
   const {
     language,
@@ -70,6 +77,10 @@ export default function TranslatorMain() {
               onClickConfirmation={onClickConfirmation}
             />
           )}
+          {isModalOn && (
+            <NavModal setModalOn={setModalOn} isMobile={isMobile} />
+          )}
+          <ModalButton isModalOn={isModalOn} setModalOn={setModalOn} />
         </div>
       </Theme>
     </Layout>

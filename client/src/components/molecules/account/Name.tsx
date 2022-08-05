@@ -1,5 +1,4 @@
 import { useCookies } from "react-cookie";
-import styles from "./Account.module.css";
 
 export default () => {
   const [cookies, setCookie, removeCookie] = useCookies();
